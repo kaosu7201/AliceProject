@@ -1,17 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="ソース ファイル">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="ヘッダー ファイル">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="リソース ファイル">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="AliceLibrary">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="AliceLibrary\Windows">
+      <UniqueIdentifier>{98ed5714-d5c1-478c-918b-87996baa9a9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AliceLibrary\Windows\DirectX">
+      <UniqueIdentifier>{5730eb5e-8fa7-4747-9391-ea23026d0e3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AliceLibrary\Sprite">
+      <UniqueIdentifier>{6019bc38-7418-4d9d-a252-336644e2964c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\ApplicationMain\Windows\DirectX11Manager.cpp">
+      <Filter>AliceLibrary\Windows\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Sprite\Sprite.cpp">
+      <Filter>AliceLibrary\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ApplicationMain\Windows\WinMain.cpp">
+      <Filter>AliceLibrary\Windows</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\ApplicationMain\Windows\DirectX11Manager.h">
+      <Filter>AliceLibrary\Windows\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Sprite\Sprite.h">
+      <Filter>AliceLibrary\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ApplicationMain\Windows\Defs.h">
+      <Filter>AliceLibrary\Windows</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
