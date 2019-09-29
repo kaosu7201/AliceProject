@@ -1,13 +1,15 @@
-#include <Windows.h>
 
 #include "DirectX11Manager.h"
+#include "Sprite/DXSprite.h"
 #include "Defs.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-  DirectX11Manager manager;
+  if (FAILED(g_DX11Manager.Init(hInstance, nCmdShow)))
+    return -1;
 
-  if (FAILED(manager.Init(hInstance, nCmdShow))) return -1;
+  DXSprite::begin_first();
+
   MSG msg = { 0 };
 
   //メッセージループ
@@ -18,14 +20,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
       TranslateMessage(&msg);
       DispatchMessage(&msg);
     }
+    else
+    {
+      g_DX11Manager.DrawBegin();
 
-    manager.DrawBegin();
+      DXSprite::drawAll();
 
-
-
-    manager.DrawEnd();
+      g_DX11Manager.DrawEnd();
+    }
   }
-
-
   return 0;
 }

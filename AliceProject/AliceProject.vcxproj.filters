@@ -15,33 +15,50 @@
     <Filter Include="AliceLibrary\Windows\DirectX">
       <UniqueIdentifier>{5730eb5e-8fa7-4747-9391-ea23026d0e3c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="AliceLibrary\Sprite">
+    <Filter Include="AliceLibrary\Windows\DXSprite">
       <UniqueIdentifier>{6019bc38-7418-4d9d-a252-336644e2964c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AliceLibrary\SpriteBase">
+      <UniqueIdentifier>{a561206a-bde9-4345-bd5c-f29afc5ef982}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{93a37740-e1be-4160-aecb-69a1efff9e4d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\ApplicationMain\Windows\DirectX11Manager.cpp">
       <Filter>AliceLibrary\Windows\DirectX</Filter>
     </ClCompile>
-    <ClCompile Include="source\Sprite\Sprite.cpp">
-      <Filter>AliceLibrary\Sprite</Filter>
-    </ClCompile>
     <ClCompile Include="source\ApplicationMain\Windows\WinMain.cpp">
       <Filter>AliceLibrary\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="source\SpriteBase\SpriteBase.cpp">
+      <Filter>AliceLibrary\SpriteBase</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ApplicationMain\Windows\Sprite\DXSprite.cpp">
+      <Filter>AliceLibrary\Windows\DXSprite</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\ApplicationMain\Windows\DirectX11Manager.h">
       <Filter>AliceLibrary\Windows\DirectX</Filter>
     </ClInclude>
-    <ClInclude Include="source\Sprite\Sprite.h">
-      <Filter>AliceLibrary\Sprite</Filter>
-    </ClInclude>
     <ClInclude Include="source\ApplicationMain\Windows\Defs.h">
       <Filter>AliceLibrary\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="source\SpriteBase\SpriteBase.h">
+      <Filter>AliceLibrary\SpriteBase</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ApplicationMain\Windows\Sprite\DXSprite.h">
+      <Filter>AliceLibrary\Windows\DXSprite</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Assets\Shaders\2DPipeLine.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
