@@ -183,3 +183,30 @@ struct DX11Effect
 };
 
 DX11Effect* CreateShader(const string& filename);
+
+class DX11Texture
+{
+public:
+  DX11Texture();
+  void DX11TextureLoad(string filename);
+  void DX11BlkTextureLoad(string filename, int blkW, int blkH, int blkNum);
+  void DX11TextureLoad(const char* filename);
+  void DX11BlkTextureLoad(const char* filename, int blkW, int blkH, int blkNum);
+
+  DX11Texture& operator[](int i) { 
+    index = i; 
+    return *this;
+  }
+
+  ID3D11ShaderResourceView* Get() { return tex.Get(); }
+
+  ShaderTexture tex;
+  TexMetadata MetaData;
+  int index;
+  int blkW;
+  int blkH;
+  int blkNum;
+private:
+  void LoadTextureMetaData(const wchar_t* filename, TexMetadata& metadata);
+
+};

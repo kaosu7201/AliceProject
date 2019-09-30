@@ -60,5 +60,8 @@
     <FxCompile Include="Assets\Shaders\2DPipeLine.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
+    <FxCompile Include="Assets\Shaders\2DPipeLine1.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

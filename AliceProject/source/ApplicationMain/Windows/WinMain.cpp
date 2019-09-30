@@ -12,6 +12,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
   MSG msg = { 0 };
 
+  DX11Texture texture;
+  texture.DX11TextureLoad("oharaibou.png");
+
   //メッセージループ
   while (WM_QUIT != msg.message)
   {
@@ -23,9 +26,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     else
     {
       g_DX11Manager.DrawBegin();
-
+      DXSprite sp(1280, 720);
+      sp.setTexture(&texture, true);
+      sp.setPos(10, 10);
+      sp.setScale(1, 1);
+      sp.draw();
       DXSprite::drawAll();
-
+      DXSprite::clearDrawList();
       g_DX11Manager.DrawEnd();
     }
   }

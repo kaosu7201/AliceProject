@@ -40,8 +40,32 @@ HRESULT DirectX11Manager::Init(HINSTANCE hInstance, int cCmdShow)
     return E_FAIL;
   }
 
-  ShowWindow(hWnd, cCmdShow);
-  UpdateWindow(hWnd);
+  RECT wRect, cRect;  // ウィンドウ全体の矩形、クライアント領域の矩形
+  int ww, wh;         // ウィンドウ全体の幅、高さ
+  int cw, ch;         // クライアント領域の幅、高さ
+
+  // ウィンドウ全体の幅・高さを計算
+  GetWindowRect(hWnd, &wRect);
+  ww = wRect.right - wRect.left;
+  wh = wRect.bottom - wRect.top;
+  // クライアント領域の幅・高さを計算
+  GetClientRect(hWnd, &cRect);
+  cw = cRect.right - cRect.left;
+  ch = cRect.bottom - cRect.top;
+  // クライアント領域以外に必要なサイズを計算
+  ww = ww - cw;
+  wh = wh - ch;
+  // ウィンドウ全体に必要なサイズを計算
+  ww = 1280 + ww;
+  wh = 720 + wh;
+
+  // 計算した幅と高さをウィンドウに設定
+  SetWindowPos(hWnd, HWND_TOP, 0, 0, ww, wh, SWP_NOMOVE);
+
+  ShowWindow(hWnd, SW_SHOW);
+  UpdateWindow(hWnd);							// ウィンドウの表示
+  SetFocus(hWnd);								// フォーカスのセット
+
 #pragma region HardWare Check
   IDXGIFactory* factory;
   IDXGIAdapter* adapter;
@@ -631,4 +655,85 @@ DX11Effect* CreateShader(const string & filename)
   ret->vs.Attach(g_DX11Manager.CreateVertexShader(filename, "vsMain"));
   ret->ps.Attach(g_DX11Manager.CreatePixelShader(filename, "psMain"));
   return ret;
+}
+
+
+
+DX11Texture::DX11Texture()
+{
+}
+
+void DX11Texture::DX11TextureLoad(string filename)
+{
+  if (filename.empty())
+    return;
+  return DX11TextureLoad(filename.c_str());
+}
+
+void DX11Texture::DX11BlkTextureLoad(string filename, int blkW, int blkH, int blkNum)
+{
+  if (filename.empty())
+    return;
+  return DX11TextureLoad(filename.c_str());
+}
+
+void DX11Texture::DX11TextureLoad(const char * filename)
+{
+  wchar_t ws[512];
+
+  setlocale(LC_CTYPE, "jpn");
+  mbstowcs(ws, filename, 512);
+  LoadTextureMetaData(ws, MetaData);
+
+  blkW = MetaData.width;
+  blkH = MetaData.height;
+  blkNum = 1;
+  index = 0;
+
+  tex.Attach(g_DX11Manager.CreateTextureFromFile(filename));
+}
+
+void DX11Texture::DX11BlkTextureLoad(const char * filename, int blkW, int blkH, int blkNum)
+{
+  wchar_t ws[512];
+
+  setlocale(LC_CTYPE, "jpn");
+  mbstowcs(ws, filename, 512);
+  LoadTextureMetaData(ws, MetaData);
+
+  this->blkW = blkW;
+  this->blkH = blkH;
+  int num = (MetaData.width / blkW) * (MetaData.height / blkH);
+  if (num > blkNum)
+  {
+    this->blkNum = blkNum;
+  }
+  else
+  {
+    this->blkNum = num;
+  }
+  index = 0;
+
+  tex.Attach(g_DX11Manager.CreateTextureFromFile(filename));
+}
+
+void DX11Texture::LoadTextureMetaData(const wchar_t* filename, TexMetadata& metadata)
+{
+  char ms[100];
+  setlocale(LC_CTYPE, "jpn");
+  wcstombs(ms, filename, 100);
+  char* 拡張子 = strstr(ms, ".");
+
+  if (拡張子 == NULL)
+    return;
+
+  if (strcmp(拡張子, ".tga") == 0 || strcmp(拡張子, ".TGA") == 0)
+  {  
+    GetMetadataFromTGAFile(filename, metadata);
+  }
+  else
+  {
+    GetMetadataFromWICFile(filename, 0, metadata);
+  }
+  return;
 }
