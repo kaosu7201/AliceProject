@@ -18,6 +18,8 @@
 #include <list>
 #include <unordered_map>
 
+#include "BlendMode/DX11BlendMode.h"
+
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "d3dcompiler.lib")
 #pragma comment(lib, "dxgi.lib")
@@ -172,7 +174,11 @@ public:
   void DrawEnd();
   void Draw(UINT VertexNum);
   void DrawIndexed(UINT VertexNum);
+
+
+  
 };
+
 
 extern DirectX11Manager g_DX11Manager;
 
@@ -210,3 +216,5 @@ private:
   void LoadTextureMetaData(const wchar_t* filename, TexMetadata& metadata);
 
 };
+
+void setPremulpryFlag(bool flag);

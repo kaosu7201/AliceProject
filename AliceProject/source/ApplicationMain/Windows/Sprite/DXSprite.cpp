@@ -252,8 +252,26 @@ bool DXSprite::getActivity()
   return bActivity;
 }
 
-void DXSprite::draw()
+void DXSprite::setTrans(bool isTrans)
 {
+  bTrans = isTrans;
+}
+
+bool DXSprite::getTrans()
+{
+  return bTrans;
+}
+
+void DXSprite::draw(bool isTrans)
+{
+  if (isTrans != true)
+  {
+    alpha = (float)g_pal / 255.0f;
+  }
+  else
+  {
+    alpha = 1;
+  }
   SpriteList.push_back(this);
 }
 
@@ -274,14 +292,17 @@ void DXSprite::drawAll()
 
     // ƒ[ƒ‹ƒh•ÏŠ·s—ñì¬
     XMMATRIX world, scale, rot;
+    float pivot_x, pivot_y;
     world = XMMatrixScaling((float)sp->polyW, (float)sp->polyH, 1.0f);
     scale = XMMatrixScaling(sp->scaleX, sp->scaleY, 1.0f);
+    pivot_x = (sp->polyW * sp->scaleX) * sp->pivotX;
+    pivot_y = (sp->polyH * sp->scaleY) * sp->pivotY;
     rot = XMMatrixRotationZ(sp->rad);
     world.r[0].m128_f32[3] = -sp->pivotX;
     world.r[1].m128_f32[3] = -sp->pivotY;
     world = world * scale * rot;
-    world.r[0].m128_f32[3] += sp->posX + sp->pivotX;
-    world.r[1].m128_f32[3] += sp->posY + sp->pivotY;
+    world.r[0].m128_f32[3] = sp->posX + pivot_x;
+    world.r[1].m128_f32[3] = sp->posY + pivot_y;
 
     constantBuffer.mtxWorld = world;
     constantBuffer.uv_left = sp->uvLeft;

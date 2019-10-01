@@ -38,6 +38,9 @@
     <ClCompile Include="source\ApplicationMain\Windows\Sprite\DXSprite.cpp">
       <Filter>AliceLibrary\Windows\DXSprite</Filter>
     </ClCompile>
+    <ClCompile Include="source\ApplicationMain\Windows\BlendMode\DX11BlendMode.cpp">
+      <Filter>AliceLibrary\Windows\DirectX</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\ApplicationMain\Windows\DirectX11Manager.h">
@@ -51,6 +54,9 @@
     </ClInclude>
     <ClInclude Include="source\ApplicationMain\Windows\Sprite\DXSprite.h">
       <Filter>AliceLibrary\Windows\DXSprite</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ApplicationMain\Windows\BlendMode\DX11BlendMode.h">
+      <Filter>AliceLibrary\Windows\DirectX</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -37,7 +37,9 @@ public:
   float getPriority();
   void setActivity(bool isActive);
   bool getActivity();
-  void draw();
+  void setTrans(bool isTrans);
+  bool getTrans();
+  void draw(bool isTrans = true);
   static void drawAll();
 
 private:
@@ -61,6 +63,7 @@ private:
   float alpha;
   float priority;
   bool bActivity;
+  bool bTrans;
 
   //ÉRÉsÅ[
   void copy(const DXSprite &r);

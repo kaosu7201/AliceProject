@@ -1,6 +1,7 @@
 #include "DirectX11Manager.h"
 
 DirectX11Manager g_DX11Manager;
+extern bool g_PMAFlag;
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -526,6 +527,33 @@ bool DirectX11Manager::CreateConstantBuffer(unsigned int bytesize, ID3D11Buffer 
   return true;
 }
 
+void ConvertPMAImage(ScratchImage &Out,const ScratchImage &image)
+{
+  TransformImage(image.GetImages(), image.GetImageCount(), image.GetMetadata(),
+    [](XMVECTOR* outPixels, const XMVECTOR* inPixels, size_t width, size_t y)
+  {
+    static const XMVECTORF32 s_chromaKey = { 0.f, 1.f, 0.f, 0.f };
+    static const XMVECTORF32 s_tolerance = { 0.2f, 0.2f, 0.2f, 0.f };
+
+    UNREFERENCED_PARAMETER(y);
+
+    for (size_t j = 0; j < width; ++j)
+    {
+      XMVECTOR value = inPixels[j];
+
+      if (XMVector3NearEqual(value, s_chromaKey, s_tolerance))
+      {
+        value = g_XMZero;
+      }
+      else
+      {
+        value = XMVectorSelect(g_XMOne, value, g_XMSelect1110);
+      }
+      outPixels[j] = value;
+    }
+  }, Out);
+}
+
 ID3D11ShaderResourceView* DirectX11Manager::CreateTextureFromFile(const wchar_t* filename)
 {
   ID3D11ShaderResourceView* ShaderResView;
@@ -556,12 +584,25 @@ ID3D11ShaderResourceView* DirectX11Manager::CreateTextureFromFile(const wchar_t*
   {
     TexMetadata meta;
     GetMetadataFromWICFile(filename, 0, meta);
-
+    ScratchImage destImage;
     std::unique_ptr<ScratchImage> image(new ScratchImage);
     HRESULT hr = LoadFromWICFile(filename, 0, &meta, *image);
+    ScratchImage result;
     if (FAILED(hr))
       return nullptr;
-    hr = CreateShaderResourceView(m_pDevice.Get(), image->GetImages(), image->GetImageCount(), meta, &ShaderResView);
+    if (g_PMAFlag == true)
+    {
+      ConvertPMAImage(result, *image);
+      hr = CreateShaderResourceView(m_pDevice.Get(), result.GetImages(), result.GetImageCount(), meta, &ShaderResView);
+      if (FAILED(hr))
+        return nullptr;
+    }
+    else
+    {
+      hr = CreateShaderResourceView(m_pDevice.Get(), image->GetImages(), image->GetImageCount(), meta, &ShaderResView);
+      if (FAILED(hr))
+        return nullptr;
+    }
     if (FAILED(hr))
       return nullptr;
     return ShaderResView;
@@ -657,7 +698,11 @@ DX11Effect* CreateShader(const string & filename)
   return ret;
 }
 
-
+void setPremulpryFlag(bool flag)
+{
+  g_PMAFlag = flag;
+}
+static bool g_PMAFlag;
 
 DX11Texture::DX11Texture()
 {
@@ -737,3 +782,4 @@ void DX11Texture::LoadTextureMetaData(const wchar_t* filename, TexMetadata& meta
   }
   return;
 }
+

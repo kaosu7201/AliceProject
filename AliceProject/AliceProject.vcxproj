@@ -19,12 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\ApplicationMain\Windows\BlendMode\DX11BlendMode.h" />
     <ClInclude Include="source\ApplicationMain\Windows\Defs.h" />
     <ClInclude Include="source\ApplicationMain\Windows\DirectX11Manager.h" />
     <ClInclude Include="source\ApplicationMain\Windows\Sprite\DXSprite.h" />
     <ClInclude Include="source\SpriteBase\SpriteBase.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\ApplicationMain\Windows\BlendMode\DX11BlendMode.cpp" />
     <ClCompile Include="source\ApplicationMain\Windows\DirectX11Manager.cpp" />
     <ClCompile Include="source\ApplicationMain\Windows\Sprite\DXSprite.cpp" />
     <ClCompile Include="source\ApplicationMain\Windows\WinMain.cpp" />
@@ -41,6 +43,7 @@
     </FxCompile>
     <FxCompile Include="Assets\Shaders\2DPipeLine1.hlsl">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </FxCompile>
   </ItemGroup>
   <PropertyGroup Label="Globals">

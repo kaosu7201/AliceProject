@@ -1,0 +1,19 @@
+#pragma once
+
+//AlphaBlend
+enum DX11_BLEND_MODE
+{
+  BLENDMODE_NOBLEND,
+  BLENDMODE_ALPHA,
+  BLENDMODE_ADD,
+  BLENDMODE_SUB,
+  BLENDMODE_MULA,
+  BLENDMODE_INVSRC,
+  BLENDMODE_PMA_ALPHA,
+  BLENDMODE_PMA_ADD,
+  BLENDMODE_PMA_SUB,
+  BLENDMODE_PMA_INVSRC,
+};
+void SetDrawBlendMode(int BlendMode, int pal);
+
+extern int g_pal;
