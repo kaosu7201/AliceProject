@@ -541,14 +541,7 @@ void ConvertPMAImage(ScratchImage &Out,const ScratchImage &image)
     {
       XMVECTOR value = inPixels[j];
 
-      if (XMVector3NearEqual(value, s_chromaKey, s_tolerance))
-      {
-        value = g_XMZero;
-      }
-      else
-      {
-        value = XMVectorSelect(g_XMOne, value, g_XMSelect1110);
-      }
+      value *= value.m128_f32[3];
       outPixels[j] = value;
     }
   }, Out);

@@ -14,7 +14,7 @@ void SetDrawBlendMode(int BlendMode, int pal)
     g_DX11Manager.m_pImContext->OMSetRenderTargets(
       1,                                    // ターゲット
       g_DX11Manager.m_pRTView.GetAddressOf(),    // ビュー
-      NULL()            // 深度バッファなし
+      NULL            // 深度バッファなし
     );
   }
   else

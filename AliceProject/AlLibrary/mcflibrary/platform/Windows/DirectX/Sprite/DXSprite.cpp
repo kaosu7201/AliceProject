@@ -66,7 +66,7 @@ DXSprite::~DXSprite()
 
 void DXSprite::begin_first()
 {
-  effect = CreateShader("Assets/Shaders/2DPipeLine1.hlsl");
+  effect = CreateShader("Assets/Shaders/Sprite.hlsl");
 
   //InputLayout‚Ìì¬
   D3D11_INPUT_ELEMENT_DESC elem[] = {
@@ -74,7 +74,7 @@ void DXSprite::begin_first()
     { "COLOR"	,	0,	DXGI_FORMAT_R32G32B32A32_FLOAT,	0,	12,	D3D11_INPUT_PER_VERTEX_DATA,	0},
     { "TEXCOORD",	0,	DXGI_FORMAT_R32G32_FLOAT,		0,	28,	D3D11_INPUT_PER_VERTEX_DATA,	0},
   };
-  il.Attach(g_DX11Manager.CreateInputLayout(elem, 3, "Assets/Shaders/2DPipeLine1.hlsl", "vsMain"));
+  il.Attach(g_DX11Manager.CreateInputLayout(elem, 3, "Assets/Shaders/Sprite.hlsl", "vsMain"));
 
   //’¸“_î•ñ‚ðÝ’è
   struct Vertex
@@ -303,6 +303,7 @@ void DXSprite::drawAll()
     world = world * scale * rot;
     world.r[0].m128_f32[3] = sp->posX + pivot_x;
     world.r[1].m128_f32[3] = sp->posY + pivot_y;
+    world.r[2].m128_f32[3] = sp->priority;
 
     constantBuffer.mtxWorld = world;
     constantBuffer.uv_left = sp->uvLeft;

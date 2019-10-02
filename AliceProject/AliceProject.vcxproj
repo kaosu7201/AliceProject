@@ -19,32 +19,32 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="source\ApplicationMain\Windows\BlendMode\DX11BlendMode.h" />
-    <ClInclude Include="source\ApplicationMain\Windows\Defs.h" />
-    <ClInclude Include="source\ApplicationMain\Windows\DirectX11Manager.h" />
-    <ClInclude Include="source\ApplicationMain\Windows\Sprite\DXSprite.h" />
-    <ClInclude Include="source\SpriteBase\SpriteBase.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="source\ApplicationMain\Windows\BlendMode\DX11BlendMode.cpp" />
-    <ClCompile Include="source\ApplicationMain\Windows\DirectX11Manager.cpp" />
-    <ClCompile Include="source\ApplicationMain\Windows\Sprite\DXSprite.cpp" />
-    <ClCompile Include="source\ApplicationMain\Windows\WinMain.cpp" />
-    <ClCompile Include="source\SpriteBase\SpriteBase.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="Assets\Shaders\2DPipeLine.hlsl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
-    </FxCompile>
-    <FxCompile Include="Assets\Shaders\2DPipeLine1.hlsl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    <FxCompile Include="Assets\Shaders\Sprite.hlsl">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AlLibrary\mcflibrary\mcfallib.cpp" />
+    <ClCompile Include="AlLibrary\mcflibrary\platform\Windows\DirectX\BlendMode\DX11BlendMode.cpp" />
+    <ClCompile Include="AlLibrary\mcflibrary\platform\Windows\DirectX\DirectX11Manager.cpp" />
+    <ClCompile Include="AlLibrary\mcflibrary\platform\Windows\DirectX\InputDevice\InputDevice.cpp" />
+    <ClCompile Include="AlLibrary\mcflibrary\platform\Windows\DirectX\Sprite\DXSprite.cpp" />
+    <ClCompile Include="AlLibrary\mcflibrary\platform\Windows\WinMain.cpp" />
+    <ClCompile Include="AlLibrary\source\ApplicationBase.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AlLibrary\AlLibrary\include\AlDraw.h" />
+    <ClInclude Include="AlLibrary\AlLibrary\include\AlController.h" />
+    <ClInclude Include="AlLibrary\AlLibrary\include\AlGCButton.h" />
+    <ClInclude Include="AlLibrary\mcflibrary\mcfallib.h" />
+    <ClInclude Include="AlLibrary\mcflibrary\platform\Windows\DirectX\BlendMode\DX11BlendMode.h" />
+    <ClInclude Include="AlLibrary\mcflibrary\platform\Windows\DirectX\DirectX11Manager.h" />
+    <ClInclude Include="AlLibrary\mcflibrary\platform\Windows\DirectX\InputDevice\InputDevice.h" />
+    <ClInclude Include="AlLibrary\mcflibrary\platform\Windows\DirectX\Sprite\DXSprite.h" />
+    <ClInclude Include="AlLibrary\source\ApplicationBase.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -128,10 +128,14 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>false</ConformanceMode>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

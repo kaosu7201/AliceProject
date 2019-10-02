@@ -9,65 +9,89 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="AliceLibrary\Windows">
-      <UniqueIdentifier>{98ed5714-d5c1-478c-918b-87996baa9a9a}</UniqueIdentifier>
+    <Filter Include="AliceLibrary\include">
+      <UniqueIdentifier>{edea839f-2371-44d8-8834-2d3b80103c9b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="AliceLibrary\Windows\DirectX">
-      <UniqueIdentifier>{5730eb5e-8fa7-4747-9391-ea23026d0e3c}</UniqueIdentifier>
+    <Filter Include="AliceLibrary\source">
+      <UniqueIdentifier>{26491152-88c9-4ced-aa34-b73e2dc0e0c5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="AliceLibrary\Windows\DXSprite">
-      <UniqueIdentifier>{6019bc38-7418-4d9d-a252-336644e2964c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="AliceLibrary\SpriteBase">
-      <UniqueIdentifier>{a561206a-bde9-4345-bd5c-f29afc5ef982}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Shaders">
+    <Filter Include="AliceLibrary\Shaders">
       <UniqueIdentifier>{93a37740-e1be-4160-aecb-69a1efff9e4d}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="source\ApplicationMain\Windows\DirectX11Manager.cpp">
-      <Filter>AliceLibrary\Windows\DirectX</Filter>
-    </ClCompile>
-    <ClCompile Include="source\ApplicationMain\Windows\WinMain.cpp">
-      <Filter>AliceLibrary\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="source\SpriteBase\SpriteBase.cpp">
-      <Filter>AliceLibrary\SpriteBase</Filter>
-    </ClCompile>
-    <ClCompile Include="source\ApplicationMain\Windows\Sprite\DXSprite.cpp">
-      <Filter>AliceLibrary\Windows\DXSprite</Filter>
-    </ClCompile>
-    <ClCompile Include="source\ApplicationMain\Windows\BlendMode\DX11BlendMode.cpp">
-      <Filter>AliceLibrary\Windows\DirectX</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="source\ApplicationMain\Windows\DirectX11Manager.h">
-      <Filter>AliceLibrary\Windows\DirectX</Filter>
-    </ClInclude>
-    <ClInclude Include="source\ApplicationMain\Windows\Defs.h">
-      <Filter>AliceLibrary\Windows</Filter>
-    </ClInclude>
-    <ClInclude Include="source\SpriteBase\SpriteBase.h">
-      <Filter>AliceLibrary\SpriteBase</Filter>
-    </ClInclude>
-    <ClInclude Include="source\ApplicationMain\Windows\Sprite\DXSprite.h">
-      <Filter>AliceLibrary\Windows\DXSprite</Filter>
-    </ClInclude>
-    <ClInclude Include="source\ApplicationMain\Windows\BlendMode\DX11BlendMode.h">
-      <Filter>AliceLibrary\Windows\DirectX</Filter>
-    </ClInclude>
+    <Filter Include="Source File">
+      <UniqueIdentifier>{53812742-5e83-43ad-84b1-b458f4ae222e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MCFLib">
+      <UniqueIdentifier>{b58d3b38-e30e-4d79-b8be-26f04317b84e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MCFLib\platform">
+      <UniqueIdentifier>{96ee9e06-ee59-4106-809b-6445004bb19e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MCFLib\platform\Windows">
+      <UniqueIdentifier>{1ea6609d-ddd6-4ff2-ad66-f40d8cbe9b7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MCFLib\platform\Windows\DirectX">
+      <UniqueIdentifier>{09c6c21e-765e-495c-a880-3138d8f74ad5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="Assets\Shaders\2DPipeLine.hlsl">
-      <Filter>Shaders</Filter>
+    <FxCompile Include="Assets\Shaders\Sprite.hlsl">
+      <Filter>AliceLibrary\Shaders</Filter>
     </FxCompile>
-    <FxCompile Include="Assets\Shaders\2DPipeLine1.hlsl">
-      <Filter>Shaders</Filter>
-    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AlLibrary\mcflibrary\platform\Windows\WinMain.cpp">
+      <Filter>MCFLib\platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="AlLibrary\mcflibrary\platform\Windows\DirectX\BlendMode\DX11BlendMode.cpp">
+      <Filter>MCFLib\platform\Windows\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="AlLibrary\mcflibrary\platform\Windows\DirectX\Sprite\DXSprite.cpp">
+      <Filter>MCFLib\platform\Windows\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="AlLibrary\mcflibrary\platform\Windows\DirectX\DirectX11Manager.cpp">
+      <Filter>MCFLib\platform\Windows\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="AlLibrary\source\ApplicationBase.cpp">
+      <Filter>Source File</Filter>
+    </ClCompile>
+    <ClCompile Include="AlLibrary\mcflibrary\mcfallib.cpp">
+      <Filter>MCFLib</Filter>
+    </ClCompile>
+    <ClCompile Include="AlLibrary\mcflibrary\platform\Windows\DirectX\InputDevice\InputDevice.cpp">
+      <Filter>MCFLib\platform\Windows\DirectX</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AlLibrary\mcflibrary\platform\Windows\DirectX\BlendMode\DX11BlendMode.h">
+      <Filter>MCFLib\platform\Windows\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="AlLibrary\mcflibrary\platform\Windows\DirectX\Sprite\DXSprite.h">
+      <Filter>MCFLib\platform\Windows\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="AlLibrary\mcflibrary\platform\Windows\DirectX\DirectX11Manager.h">
+      <Filter>MCFLib\platform\Windows\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="AlLibrary\AlLibrary\include\AlDraw.h">
+      <Filter>AliceLibrary\include</Filter>
+    </ClInclude>
+    <ClInclude Include="AlLibrary\AlLibrary\include\AlController.h">
+      <Filter>AliceLibrary\include</Filter>
+    </ClInclude>
+    <ClInclude Include="AlLibrary\source\ApplicationBase.h">
+      <Filter>Source File</Filter>
+    </ClInclude>
+    <ClInclude Include="AlLibrary\mcflibrary\mcfallib.h">
+      <Filter>MCFLib</Filter>
+    </ClInclude>
+    <ClInclude Include="AlLibrary\mcflibrary\platform\Windows\DirectX\InputDevice\InputDevice.h">
+      <Filter>MCFLib\platform\Windows\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="AlLibrary\AlLibrary\include\AlGCButton.h">
+      <Filter>AliceLibrary\include</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

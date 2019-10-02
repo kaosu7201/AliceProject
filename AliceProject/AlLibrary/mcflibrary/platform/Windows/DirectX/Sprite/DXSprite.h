@@ -1,8 +1,6 @@
 #pragma once
 #include "../DirectX11Manager.h"
-#include "../../../SpriteBase/SpriteBase.h"
-class DXSprite :
-  public SpriteBase
+class DXSprite
 {
 public:
   DXSprite();

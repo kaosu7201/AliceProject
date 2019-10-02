@@ -173,10 +173,7 @@ public:
   void DrawBegin();
   void DrawEnd();
   void Draw(UINT VertexNum);
-  void DrawIndexed(UINT VertexNum);
-
-
-  
+  void DrawIndexed(UINT VertexNum); 
 };
 
 
