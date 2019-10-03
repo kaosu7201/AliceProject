@@ -21,7 +21,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     }
     else
     {
-      
+      g_DX11Manager.DrawBegin();
+
+      g_DX11Manager.DrawEnd();
     }
   }
   return 0;

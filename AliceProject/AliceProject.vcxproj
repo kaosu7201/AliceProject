@@ -30,7 +30,10 @@
     <ClCompile Include="AlLibrary\mcflibrary\mcfallib.cpp" />
     <ClCompile Include="AlLibrary\mcflibrary\platform\Windows\DirectX\BlendMode\DX11BlendMode.cpp" />
     <ClCompile Include="AlLibrary\mcflibrary\platform\Windows\DirectX\DirectX11Manager.cpp" />
+    <ClCompile Include="AlLibrary\mcflibrary\platform\Windows\DirectX\InputDevice\DXInput.cpp" />
     <ClCompile Include="AlLibrary\mcflibrary\platform\Windows\DirectX\InputDevice\InputDevice.cpp" />
+    <ClCompile Include="AlLibrary\mcflibrary\platform\Windows\DirectX\InputDevice\KeyboardDevice.cpp" />
+    <ClCompile Include="AlLibrary\mcflibrary\platform\Windows\DirectX\InputDevice\MouseDevice.cpp" />
     <ClCompile Include="AlLibrary\mcflibrary\platform\Windows\DirectX\Sprite\DXSprite.cpp" />
     <ClCompile Include="AlLibrary\mcflibrary\platform\Windows\WinMain.cpp" />
     <ClCompile Include="AlLibrary\source\ApplicationBase.cpp" />
@@ -38,11 +41,14 @@
   <ItemGroup>
     <ClInclude Include="AlLibrary\AlLibrary\include\AlDraw.h" />
     <ClInclude Include="AlLibrary\AlLibrary\include\AlController.h" />
-    <ClInclude Include="AlLibrary\AlLibrary\include\AlGCButton.h" />
     <ClInclude Include="AlLibrary\mcflibrary\mcfallib.h" />
     <ClInclude Include="AlLibrary\mcflibrary\platform\Windows\DirectX\BlendMode\DX11BlendMode.h" />
     <ClInclude Include="AlLibrary\mcflibrary\platform\Windows\DirectX\DirectX11Manager.h" />
+    <ClInclude Include="AlLibrary\mcflibrary\platform\Windows\DirectX\InputDevice\ButtonSetEnum.h" />
+    <ClInclude Include="AlLibrary\mcflibrary\platform\Windows\DirectX\InputDevice\DXInput.h" />
     <ClInclude Include="AlLibrary\mcflibrary\platform\Windows\DirectX\InputDevice\InputDevice.h" />
+    <ClInclude Include="AlLibrary\mcflibrary\platform\Windows\DirectX\InputDevice\KeyboardDevice.h" />
+    <ClInclude Include="AlLibrary\mcflibrary\platform\Windows\DirectX\InputDevice\MouseDevice.h" />
     <ClInclude Include="AlLibrary\mcflibrary\platform\Windows\DirectX\Sprite\DXSprite.h" />
     <ClInclude Include="AlLibrary\source\ApplicationBase.h" />
   </ItemGroup>
@@ -128,8 +134,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>false</ConformanceMode>
-      <AdditionalIncludeDirectories>
-      </AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>AlLibrary\AlLibrary\include;AlLibrary\mcflibrary</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

@@ -24,6 +24,18 @@
 #pragma comment(lib, "d3dcompiler.lib")
 #pragma comment(lib, "dxgi.lib")
 
+// DirectInput
+#include "InputDevice/DXInput.h"
+#define DIRECTINPUT_VERSION     0x0800          // DirectInputのバージョン指定
+#include <dinput.h>
+#pragma comment(lib,"dinput8.lib")
+#pragma comment(lib,"dxguid.lib")
+
+// define
+#define DINPUT_KEYBOARD		(1<<0)
+#define DINPUT_MOUSE			(1<<1)
+#define DINPUT_JOYSTICK		(1<<2)
+
 using Microsoft::WRL::ComPtr;
 using namespace DirectX;
 using std::string;
@@ -49,6 +61,7 @@ class DirectX11Manager
 {
   HWND hWnd = NULL;
 public:
+  HWND gethWd() { return hWnd; }
   //DX11
   ComPtr<ID3D11Device>			m_pDevice = nullptr;
   ComPtr<ID3D11DeviceContext>		m_pImContext = nullptr;
