@@ -1,5 +1,5 @@
 #pragma once
-#include "../DirectX11Manager.h"
+#include "../../PlWindows.h"
 class DXSprite
 {
 public:

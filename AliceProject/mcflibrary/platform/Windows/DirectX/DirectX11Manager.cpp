@@ -1,6 +1,5 @@
-#include "DirectX11Manager.h"
+#include "../PlWindows.h"
 
-DirectX11Manager g_DX11Manager;
 extern bool g_PMAFlag;
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -686,8 +685,8 @@ void DirectX11Manager::DrawIndexed(UINT VertexNum)
 DX11Effect* CreateShader(const string & filename)
 {
   DX11Effect* ret = new DX11Effect();
-  ret->vs.Attach(g_DX11Manager.CreateVertexShader(filename, "vsMain"));
-  ret->ps.Attach(g_DX11Manager.CreatePixelShader(filename, "psMain"));
+  ret->vs.Attach(PlWindows::DXManager.CreateVertexShader(filename, "vsMain"));
+  ret->ps.Attach(PlWindows::DXManager.CreatePixelShader(filename, "psMain"));
   return ret;
 }
 
@@ -728,7 +727,7 @@ void DX11Texture::DX11TextureLoad(const char * filename)
   blkNum = 1;
   index = 0;
 
-  tex.Attach(g_DX11Manager.CreateTextureFromFile(filename));
+  tex.Attach(PlWindows::DXManager.CreateTextureFromFile(filename));
 }
 
 void DX11Texture::DX11BlkTextureLoad(const char * filename, int blkW, int blkH, int blkNum)
@@ -752,7 +751,7 @@ void DX11Texture::DX11BlkTextureLoad(const char * filename, int blkW, int blkH, 
   }
   index = 0;
 
-  tex.Attach(g_DX11Manager.CreateTextureFromFile(filename));
+  tex.Attach(PlWindows::DXManager.CreateTextureFromFile(filename));
 }
 
 void DX11Texture::LoadTextureMetaData(const wchar_t* filename, TexMetadata& metadata)

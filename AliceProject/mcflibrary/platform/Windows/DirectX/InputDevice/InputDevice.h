@@ -20,9 +20,11 @@ class CDefaultController : public _IController
 private:
   ButtonSet m_setting[GCBTN_NUM];
 public:
-  CDefaultController(IKeyInput keyboard, IMouseInput mouse);
+  CDefaultController();
   ~CDefaultController() {}
   void UpDate();
+
+
 
   //“ü—Íˆ—
   bool GetButtonState(AlControllerButton ctrl, STATE_TYPE get_type = PRESENT);

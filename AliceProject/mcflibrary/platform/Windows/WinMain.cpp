@@ -1,10 +1,11 @@
 
-#include "DirectX/DirectX11Manager.h"
+#include "PlWindows.h"
 #include "DirectX/Sprite/DXSprite.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-  if (FAILED(g_DX11Manager.Init(hInstance, nCmdShow)))
+  PlWindows* lpPlatform = PlWindows::CreatePlatform();
+  if (FAILED(lpPlatform->DXManager.Init(hInstance, nCmdShow)))
     return -1;
 
   DXSprite::begin_first();
@@ -21,9 +22,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     }
     else
     {
-      g_DX11Manager.DrawBegin();
-
-      g_DX11Manager.DrawEnd();
+      lpPlatform->CallFrameProcess();
     }
   }
   return 0;

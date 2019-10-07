@@ -190,8 +190,6 @@ public:
 };
 
 
-extern DirectX11Manager g_DX11Manager;
-
 struct DX11Effect
 {
   VertexShader vs;

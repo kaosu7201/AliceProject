@@ -1,4 +1,4 @@
-#include "../DirectX11Manager.h"
+#include "../../PlWindows.h"
 
 
 // DrawBlendMode
@@ -11,18 +11,18 @@ void SetDrawBlendMode(int BlendMode, int pal)
 {
   if (BlendMode != 0)
   {
-    g_DX11Manager.m_pImContext->OMSetRenderTargets(
+    PlWindows::DXManager.m_pImContext->OMSetRenderTargets(
       1,                                    // ターゲット
-      g_DX11Manager.m_pRTView.GetAddressOf(),    // ビュー
+      PlWindows::DXManager.m_pRTView.GetAddressOf(),    // ビュー
       NULL            // 深度バッファなし
     );
   }
   else
   {
-    g_DX11Manager.m_pImContext->OMSetRenderTargets(
+    PlWindows::DXManager.m_pImContext->OMSetRenderTargets(
       1,                                    // ターゲット
-      g_DX11Manager.m_pRTView.GetAddressOf(),    // ビュー
-      g_DX11Manager.m_pDepthStencilView.Get()           // 深度バッファなし
+      PlWindows::DXManager.m_pRTView.GetAddressOf(),    // ビュー
+      PlWindows::DXManager.m_pDepthStencilView.Get()           // 深度バッファなし
     );  
   }
   g_pal = pal;
@@ -73,8 +73,8 @@ static void BlendNoBlend()
   BlendDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
 
   float blendFactor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
-  g_DX11Manager.m_pDevice->CreateBlendState(&BlendDesc, &pBlendState);
-  g_DX11Manager.m_pImContext->OMSetBlendState(pBlendState, blendFactor, 0xffffffff);
+  PlWindows::DXManager.m_pDevice->CreateBlendState(&BlendDesc, &pBlendState);
+  PlWindows::DXManager.m_pImContext->OMSetBlendState(pBlendState, blendFactor, 0xffffffff);
 }
 
 static void BlendAlpha()
@@ -93,8 +93,8 @@ static void BlendAlpha()
   BlendDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
   BlendDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
   float blendFactor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
-  g_DX11Manager.m_pDevice->CreateBlendState(&BlendDesc, &pBlendState);
-  g_DX11Manager.m_pImContext->OMSetBlendState(pBlendState, blendFactor, 0xffffffff);
+  PlWindows::DXManager.m_pDevice->CreateBlendState(&BlendDesc, &pBlendState);
+  PlWindows::DXManager.m_pImContext->OMSetBlendState(pBlendState, blendFactor, 0xffffffff);
 }
 
 static void BlendPmaAlpha()
@@ -113,6 +113,6 @@ static void BlendPmaAlpha()
   BlendDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
   BlendDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
   float blendFactor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
-  g_DX11Manager.m_pDevice->CreateBlendState(&BlendDesc, &pBlendState);
-  g_DX11Manager.m_pImContext->OMSetBlendState(pBlendState, blendFactor, 0xffffffff);
+  PlWindows::DXManager.m_pDevice->CreateBlendState(&BlendDesc, &pBlendState);
+  PlWindows::DXManager.m_pImContext->OMSetBlendState(pBlendState, blendFactor, 0xffffffff);
 }

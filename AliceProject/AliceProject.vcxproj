@@ -22,35 +22,41 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="mcflibrary\mcfallib.cpp" />
+    <ClCompile Include="mcflibrary\platform\Platform.cpp" />
+    <ClCompile Include="mcflibrary\platform\Windows\DirectX\BlendMode\DX11BlendMode.cpp" />
+    <ClCompile Include="mcflibrary\platform\Windows\DirectX\DirectX11Manager.cpp" />
+    <ClCompile Include="mcflibrary\platform\Windows\DirectX\InputDevice\DXInput.cpp" />
+    <ClCompile Include="mcflibrary\platform\Windows\DirectX\InputDevice\InputDevice.cpp" />
+    <ClCompile Include="mcflibrary\platform\Windows\DirectX\InputDevice\KeyboardDevice.cpp" />
+    <ClCompile Include="mcflibrary\platform\Windows\DirectX\InputDevice\MouseDevice.cpp" />
+    <ClCompile Include="mcflibrary\platform\Windows\DirectX\Sprite\DXSprite.cpp" />
+    <ClCompile Include="mcflibrary\platform\Windows\PlWindows.cpp" />
+    <ClCompile Include="mcflibrary\platform\Windows\WinMain.cpp" />
+    <ClCompile Include="source\ApplicationBase.cpp" />
+    <ClCompile Include="source\Application\ApplicationMain.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AlLibrary\include\AlController.h" />
+    <ClInclude Include="AlLibrary\include\AlDraw.h" />
+    <ClInclude Include="mcflibrary\mcfallib.h" />
+    <ClInclude Include="mcflibrary\platform\Platform.h" />
+    <ClInclude Include="mcflibrary\platform\Windows\DirectX\BlendMode\DX11BlendMode.h" />
+    <ClInclude Include="mcflibrary\platform\Windows\DirectX\DirectX11Manager.h" />
+    <ClInclude Include="mcflibrary\platform\Windows\DirectX\InputDevice\ButtonSetEnum.h" />
+    <ClInclude Include="mcflibrary\platform\Windows\DirectX\InputDevice\DXInput.h" />
+    <ClInclude Include="mcflibrary\platform\Windows\DirectX\InputDevice\InputDevice.h" />
+    <ClInclude Include="mcflibrary\platform\Windows\DirectX\InputDevice\KeyboardDevice.h" />
+    <ClInclude Include="mcflibrary\platform\Windows\DirectX\InputDevice\MouseDevice.h" />
+    <ClInclude Include="mcflibrary\platform\Windows\DirectX\Sprite\DXSprite.h" />
+    <ClInclude Include="mcflibrary\platform\Windows\PlWindows.h" />
+    <ClInclude Include="source\ApplicationBase.h" />
+    <ClInclude Include="source\Application\ApplicationMain.h" />
+  </ItemGroup>
+  <ItemGroup>
     <FxCompile Include="Assets\Shaders\Sprite.hlsl">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </FxCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="AlLibrary\mcflibrary\mcfallib.cpp" />
-    <ClCompile Include="AlLibrary\mcflibrary\platform\Windows\DirectX\BlendMode\DX11BlendMode.cpp" />
-    <ClCompile Include="AlLibrary\mcflibrary\platform\Windows\DirectX\DirectX11Manager.cpp" />
-    <ClCompile Include="AlLibrary\mcflibrary\platform\Windows\DirectX\InputDevice\DXInput.cpp" />
-    <ClCompile Include="AlLibrary\mcflibrary\platform\Windows\DirectX\InputDevice\InputDevice.cpp" />
-    <ClCompile Include="AlLibrary\mcflibrary\platform\Windows\DirectX\InputDevice\KeyboardDevice.cpp" />
-    <ClCompile Include="AlLibrary\mcflibrary\platform\Windows\DirectX\InputDevice\MouseDevice.cpp" />
-    <ClCompile Include="AlLibrary\mcflibrary\platform\Windows\DirectX\Sprite\DXSprite.cpp" />
-    <ClCompile Include="AlLibrary\mcflibrary\platform\Windows\WinMain.cpp" />
-    <ClCompile Include="AlLibrary\source\ApplicationBase.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="AlLibrary\AlLibrary\include\AlDraw.h" />
-    <ClInclude Include="AlLibrary\AlLibrary\include\AlController.h" />
-    <ClInclude Include="AlLibrary\mcflibrary\mcfallib.h" />
-    <ClInclude Include="AlLibrary\mcflibrary\platform\Windows\DirectX\BlendMode\DX11BlendMode.h" />
-    <ClInclude Include="AlLibrary\mcflibrary\platform\Windows\DirectX\DirectX11Manager.h" />
-    <ClInclude Include="AlLibrary\mcflibrary\platform\Windows\DirectX\InputDevice\ButtonSetEnum.h" />
-    <ClInclude Include="AlLibrary\mcflibrary\platform\Windows\DirectX\InputDevice\DXInput.h" />
-    <ClInclude Include="AlLibrary\mcflibrary\platform\Windows\DirectX\InputDevice\InputDevice.h" />
-    <ClInclude Include="AlLibrary\mcflibrary\platform\Windows\DirectX\InputDevice\KeyboardDevice.h" />
-    <ClInclude Include="AlLibrary\mcflibrary\platform\Windows\DirectX\InputDevice\MouseDevice.h" />
-    <ClInclude Include="AlLibrary\mcflibrary\platform\Windows\DirectX\Sprite\DXSprite.h" />
-    <ClInclude Include="AlLibrary\source\ApplicationBase.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -134,7 +140,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>false</ConformanceMode>
-      <AdditionalIncludeDirectories>AlLibrary\AlLibrary\include;AlLibrary\mcflibrary</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;source;AlLibrary\include;mcflibrary</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

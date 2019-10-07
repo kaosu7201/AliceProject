@@ -1,6 +1,6 @@
 #include "InputDevice.h"
 
-CDefaultController::CDefaultController(IKeyInput keyboard, IMouseInput mouse)
+CDefaultController::CDefaultController()
 {
 }
 
@@ -10,6 +10,8 @@ void CDefaultController::UpDate()
 
 bool CDefaultController::GetButtonState(AlControllerButton ctrl, STATE_TYPE get_type)
 {
+  bool key(false), mouse(false), pad(false);
+  
   return false;
 }
 
@@ -37,8 +39,10 @@ void CDefaultController::SetConfigKeyBoard(AlControllerButton ctrl, KEYBOARD_BUT
 
 void CDefaultController::SetConfigGamePad(AlControllerButton ctrl, GAMEPAD_BUTTON pad)
 {
+  m_setting[ctrl].pad = pad;
 }
 
 void CDefaultController::SetConfigMouse(AlControllerButton ctrl, MOUSE_BUTTON mouse)
 {
+  m_setting[ctrl].mouse = mouse;
 }

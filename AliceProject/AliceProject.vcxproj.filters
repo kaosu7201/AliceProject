@@ -42,83 +42,104 @@
     <Filter Include="MCFLib\platform\Windows\DirectX\Input">
       <UniqueIdentifier>{6b421de8-bee6-4d52-90fe-7236763d63d0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source File\ApplicationCode">
+      <UniqueIdentifier>{847bbefa-328b-4f61-b84e-735967297508}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="mcflibrary\platform\Windows\DirectX\InputDevice\DXInput.cpp">
+      <Filter>MCFLib\platform\Windows\DirectX\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="mcflibrary\platform\Windows\DirectX\InputDevice\InputDevice.cpp">
+      <Filter>MCFLib\platform\Windows\DirectX\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="mcflibrary\platform\Windows\DirectX\InputDevice\KeyboardDevice.cpp">
+      <Filter>MCFLib\platform\Windows\DirectX\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="mcflibrary\platform\Windows\DirectX\InputDevice\MouseDevice.cpp">
+      <Filter>MCFLib\platform\Windows\DirectX\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="mcflibrary\platform\Windows\DirectX\DirectX11Manager.cpp">
+      <Filter>MCFLib\platform\Windows\DirectX\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="mcflibrary\platform\Windows\DirectX\BlendMode\DX11BlendMode.cpp">
+      <Filter>MCFLib\platform\Windows\DirectX\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="mcflibrary\platform\Windows\DirectX\Sprite\DXSprite.cpp">
+      <Filter>MCFLib\platform\Windows\DirectX\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="mcflibrary\platform\Windows\PlWindows.cpp">
+      <Filter>MCFLib\platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="mcflibrary\platform\Windows\WinMain.cpp">
+      <Filter>MCFLib\platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="mcflibrary\platform\Platform.cpp">
+      <Filter>MCFLib\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="mcflibrary\mcfallib.cpp">
+      <Filter>MCFLib</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ApplicationBase.cpp">
+      <Filter>Source File</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Application\ApplicationMain.cpp">
+      <Filter>Source File\ApplicationCode</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AlLibrary\include\AlController.h">
+      <Filter>AliceLibrary\include</Filter>
+    </ClInclude>
+    <ClInclude Include="AlLibrary\include\AlDraw.h">
+      <Filter>AliceLibrary\include</Filter>
+    </ClInclude>
+    <ClInclude Include="mcflibrary\platform\Windows\DirectX\InputDevice\ButtonSetEnum.h">
+      <Filter>MCFLib\platform\Windows\DirectX\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="mcflibrary\platform\Windows\DirectX\InputDevice\DXInput.h">
+      <Filter>MCFLib\platform\Windows\DirectX\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="mcflibrary\platform\Windows\DirectX\InputDevice\InputDevice.h">
+      <Filter>MCFLib\platform\Windows\DirectX\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="mcflibrary\platform\Windows\DirectX\InputDevice\KeyboardDevice.h">
+      <Filter>MCFLib\platform\Windows\DirectX\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="mcflibrary\platform\Windows\DirectX\InputDevice\MouseDevice.h">
+      <Filter>MCFLib\platform\Windows\DirectX\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="mcflibrary\platform\Windows\DirectX\DirectX11Manager.h">
+      <Filter>MCFLib\platform\Windows\DirectX\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="mcflibrary\platform\Windows\DirectX\BlendMode\DX11BlendMode.h">
+      <Filter>MCFLib\platform\Windows\DirectX\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="mcflibrary\platform\Windows\DirectX\Sprite\DXSprite.h">
+      <Filter>MCFLib\platform\Windows\DirectX\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="mcflibrary\platform\Windows\PlWindows.h">
+      <Filter>MCFLib\platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="mcflibrary\platform\Platform.h">
+      <Filter>MCFLib\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="mcflibrary\mcfallib.h">
+      <Filter>MCFLib</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ApplicationBase.h">
+      <Filter>Source File</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Application\ApplicationMain.h">
+      <Filter>Source File\ApplicationCode</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
     <FxCompile Include="Assets\Shaders\Sprite.hlsl">
       <Filter>AliceLibrary\Shaders</Filter>
     </FxCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="AlLibrary\mcflibrary\platform\Windows\WinMain.cpp">
-      <Filter>MCFLib\platform\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="AlLibrary\source\ApplicationBase.cpp">
-      <Filter>Source File</Filter>
-    </ClCompile>
-    <ClCompile Include="AlLibrary\mcflibrary\mcfallib.cpp">
-      <Filter>MCFLib</Filter>
-    </ClCompile>
-    <ClCompile Include="AlLibrary\mcflibrary\platform\Windows\DirectX\DirectX11Manager.cpp">
-      <Filter>MCFLib\platform\Windows\DirectX\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="AlLibrary\mcflibrary\platform\Windows\DirectX\BlendMode\DX11BlendMode.cpp">
-      <Filter>MCFLib\platform\Windows\DirectX\Sprite</Filter>
-    </ClCompile>
-    <ClCompile Include="AlLibrary\mcflibrary\platform\Windows\DirectX\Sprite\DXSprite.cpp">
-      <Filter>MCFLib\platform\Windows\DirectX\Sprite</Filter>
-    </ClCompile>
-    <ClCompile Include="AlLibrary\mcflibrary\platform\Windows\DirectX\InputDevice\InputDevice.cpp">
-      <Filter>MCFLib\platform\Windows\DirectX\Input</Filter>
-    </ClCompile>
-    <ClCompile Include="AlLibrary\mcflibrary\platform\Windows\DirectX\InputDevice\MouseDevice.cpp">
-      <Filter>AliceLibrary</Filter>
-    </ClCompile>
-    <ClCompile Include="AlLibrary\mcflibrary\platform\Windows\DirectX\InputDevice\KeyboardDevice.cpp">
-      <Filter>AliceLibrary</Filter>
-    </ClCompile>
-    <ClCompile Include="AlLibrary\mcflibrary\platform\Windows\DirectX\InputDevice\DXInput.cpp">
-      <Filter>MCFLib\platform\Windows\DirectX\Input</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="AlLibrary\AlLibrary\include\AlDraw.h">
-      <Filter>AliceLibrary\include</Filter>
-    </ClInclude>
-    <ClInclude Include="AlLibrary\AlLibrary\include\AlController.h">
-      <Filter>AliceLibrary\include</Filter>
-    </ClInclude>
-    <ClInclude Include="AlLibrary\source\ApplicationBase.h">
-      <Filter>Source File</Filter>
-    </ClInclude>
-    <ClInclude Include="AlLibrary\mcflibrary\mcfallib.h">
-      <Filter>MCFLib</Filter>
-    </ClInclude>
-    <ClInclude Include="AlLibrary\mcflibrary\platform\Windows\DirectX\DirectX11Manager.h">
-      <Filter>MCFLib\platform\Windows\DirectX\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="AlLibrary\mcflibrary\platform\Windows\DirectX\BlendMode\DX11BlendMode.h">
-      <Filter>MCFLib\platform\Windows\DirectX\Sprite</Filter>
-    </ClInclude>
-    <ClInclude Include="AlLibrary\mcflibrary\platform\Windows\DirectX\Sprite\DXSprite.h">
-      <Filter>MCFLib\platform\Windows\DirectX\Sprite</Filter>
-    </ClInclude>
-    <ClInclude Include="AlLibrary\mcflibrary\platform\Windows\DirectX\InputDevice\InputDevice.h">
-      <Filter>MCFLib\platform\Windows\DirectX\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="AlLibrary\mcflibrary\platform\Windows\DirectX\InputDevice\ButtonSetEnum.h">
-      <Filter>MCFLib\platform\Windows\DirectX\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="AlLibrary\mcflibrary\platform\Windows\DirectX\InputDevice\KeyboardDevice.h">
-      <Filter>MCFLib\platform\Windows\DirectX\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="AlLibrary\mcflibrary\platform\Windows\DirectX\InputDevice\MouseDevice.h">
-      <Filter>MCFLib\platform\Windows\DirectX\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="AlLibrary\mcflibrary\platform\Windows\DirectX\InputDevice\DXInput.h">
-      <Filter>MCFLib\platform\Windows\DirectX\Input</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

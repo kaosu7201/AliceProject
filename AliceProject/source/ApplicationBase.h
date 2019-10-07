@@ -11,6 +11,8 @@ public:
   virtual bool CallProcess();
   virtual bool CallRender();
 
+  static ApplicationBase* CallGetInstance() { return GetInstance(); }
+
 protected:
   virtual bool Initialize() = 0;
   virtual bool Terminate() = 0;

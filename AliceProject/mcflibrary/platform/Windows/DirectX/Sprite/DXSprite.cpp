@@ -74,7 +74,7 @@ void DXSprite::begin_first()
     { "COLOR"	,	0,	DXGI_FORMAT_R32G32B32A32_FLOAT,	0,	12,	D3D11_INPUT_PER_VERTEX_DATA,	0},
     { "TEXCOORD",	0,	DXGI_FORMAT_R32G32_FLOAT,		0,	28,	D3D11_INPUT_PER_VERTEX_DATA,	0},
   };
-  il.Attach(g_DX11Manager.CreateInputLayout(elem, 3, "Assets/Shaders/Sprite.hlsl", "vsMain"));
+  il.Attach(PlWindows::DXManager.CreateInputLayout(elem, 3, "Assets/Shaders/Sprite.hlsl", "vsMain"));
 
   //頂点情報を設定
   struct Vertex
@@ -91,15 +91,15 @@ void DXSprite::begin_first()
     { XMFLOAT3(1.0f, 1.0f, 0.0f), XMFLOAT4(1,1,1,1),XMFLOAT2(1,1)}
   };
 
-  vb.Attach(g_DX11Manager.CreateVertexBuffer(vertexs.data(), static_cast<UINT>(vertexs.size())));
+  vb.Attach(PlWindows::DXManager.CreateVertexBuffer(vertexs.data(), static_cast<UINT>(vertexs.size())));
 
   //コンスタントバッファの作成
-  g_DX11Manager.CreateConstantBuffer(sizeof(ConstantBufferData), &cb);
+  PlWindows::DXManager.CreateConstantBuffer(sizeof(ConstantBufferData), &cb);
 
   //インデックス情報の設定
   idxs = { 0,1,2,2,1,3 };
 
-  ib.Attach(g_DX11Manager.CreateIndexBuffer(idxs.data(), static_cast<UINT>(idxs.size())));
+  ib.Attach(PlWindows::DXManager.CreateIndexBuffer(idxs.data(), static_cast<UINT>(idxs.size())));
 }
 
 void DXSprite::clearDrawList()
@@ -311,22 +311,22 @@ void DXSprite::drawAll()
     constantBuffer.uv_width = sp->uvW;
     constantBuffer.uv_height = sp->uvH;
     constantBuffer.alpha = sp->alpha;
-    g_DX11Manager.UpdateConstantBuffer(cb.Get(), constantBuffer);
+    PlWindows::DXManager.UpdateConstantBuffer(cb.Get(), constantBuffer);
 
     //ポリゴンを書くための各種パラメータセット
-    g_DX11Manager.SetVertexShader(effect->vs.Get());
-    g_DX11Manager.SetPixelShader(effect->ps.Get());
+    PlWindows::DXManager.SetVertexShader(effect->vs.Get());
+    PlWindows::DXManager.SetPixelShader(effect->ps.Get());
 
     ID3D11Buffer * tmpCb[] = { cb.Get() };
-    g_DX11Manager.m_pImContext->VSSetConstantBuffers(0, 1, tmpCb);
+    PlWindows::DXManager.m_pImContext->VSSetConstantBuffers(0, 1, tmpCb);
 
-    g_DX11Manager.SetInputLayout(il.Get());
-    g_DX11Manager.SetVertexBuffer(vb.Get(), sizeof(Vertex));
-    g_DX11Manager.SetIndexBuffer(ib.Get());
-    g_DX11Manager.SetTexture2D(0, sp->tex.Get());
+    PlWindows::DXManager.SetInputLayout(il.Get());
+    PlWindows::DXManager.SetVertexBuffer(vb.Get(), sizeof(Vertex));
+    PlWindows::DXManager.SetIndexBuffer(ib.Get());
+    PlWindows::DXManager.SetTexture2D(0, sp->tex.Get());
 
     //DrawCall
-    g_DX11Manager.DrawIndexed(static_cast<UINT>(idxs.size()));
+    PlWindows::DXManager.DrawIndexed(static_cast<UINT>(idxs.size()));
   }
 }
 

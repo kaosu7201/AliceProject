@@ -2,6 +2,7 @@
 
 void CDIKeyBoard::UpDate()
 {
+
 }
 
 void CDIKeyBoard::Init()

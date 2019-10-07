@@ -1,4 +1,4 @@
-#include "../DirectX11Manager.h"
+#include "../../PlWindows.h"
 
 
 DXInput *DXInput::lpInput = NULL;
@@ -54,7 +54,7 @@ BOOL WINAPI DIEnumDevObjCallback(
 
 bool DXInput::CreateInput()
 {
-  HWND hWnd = g_DX11Manager.gethWd();
+  HWND hWnd = PlWindows::DXManager.gethWd();
 	HINSTANCE hInst = GetModuleHandle(0);
 	HRESULT hr;
 	hr = DirectInput8Create(hInst, DIRECTINPUT_VERSION, IID_IDirectInput8, (void**)&pDInput, NULL);
