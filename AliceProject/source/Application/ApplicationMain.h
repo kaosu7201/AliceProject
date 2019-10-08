@@ -1,5 +1,9 @@
 #pragma once
+
+
 #include "ApplicationBase.h"
+
+
 class ApplicationMain :
   public ApplicationBase
 {

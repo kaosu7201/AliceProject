@@ -45,6 +45,9 @@
     <Filter Include="Source File\ApplicationCode">
       <UniqueIdentifier>{847bbefa-328b-4f61-b84e-735967297508}</UniqueIdentifier>
     </Filter>
+    <Filter Include="AliceLibrary\source\AlMath">
+      <UniqueIdentifier>{5e210baf-0de6-4b99-b2c8-01e5715f1d1a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -88,6 +91,12 @@
     </ClCompile>
     <ClCompile Include="source\Application\ApplicationMain.cpp">
       <Filter>Source File\ApplicationCode</Filter>
+    </ClCompile>
+    <ClCompile Include="AlLibrary\source\AlMath\AlVector2.cpp">
+      <Filter>AliceLibrary\source\AlMath</Filter>
+    </ClCompile>
+    <ClCompile Include="AlLibrary\source\AlMath\AlMath.cpp">
+      <Filter>AliceLibrary\source\AlMath</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -135,6 +144,24 @@
     </ClInclude>
     <ClInclude Include="source\Application\ApplicationMain.h">
       <Filter>Source File\ApplicationCode</Filter>
+    </ClInclude>
+    <ClInclude Include="AlLibrary\include\AlVector2.h">
+      <Filter>AliceLibrary\include</Filter>
+    </ClInclude>
+    <ClInclude Include="AlLibrary\include\AlVector3.h">
+      <Filter>AliceLibrary\include</Filter>
+    </ClInclude>
+    <ClInclude Include="AlLibrary\include\AlVector4.h">
+      <Filter>AliceLibrary\include</Filter>
+    </ClInclude>
+    <ClInclude Include="AlLibrary\include\AlPrototype.h">
+      <Filter>AliceLibrary\include</Filter>
+    </ClInclude>
+    <ClInclude Include="AlLibrary\include\AlMath.h">
+      <Filter>AliceLibrary\include</Filter>
+    </ClInclude>
+    <ClInclude Include="AlLibrary\include\AlLibrary.h">
+      <Filter>AliceLibrary\include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
