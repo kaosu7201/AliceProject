@@ -1,5 +1,5 @@
 ﻿#pragma once
-
+#include "AlVector2.h"
 // --------------------------------------------------------------------------
 /// @brief ボタンの定義
 // --------------------------------------------------------------------------
@@ -43,7 +43,7 @@ enum STATE_TYPE
   JUST_UP,        //!<離された直後かを取得する
 };
 
-
+#ifdef _WINDOWS
 class _IController
 {
 public:
@@ -52,11 +52,17 @@ public:
 
   //入力処理
   virtual bool GetButtonState(AlControllerButton ctrl, STATE_TYPE get_type = PRESENT) = 0;
+  virtual const AlVector2 GetLeftStick() const = 0;
+  virtual const AlVector2 GetRightStick() const = 0;
   virtual void GetRelativePos(double &x, double &y) = 0;
   virtual void GetAbsScreenPos(double &x, double &y) = 0;
   virtual void GetWheelMove(double &z) = 0;
   //キーコンフィグ
   virtual void SetDefault() = 0;
+  virtual void SetConfigKeyBoard(AlControllerButton ctrl, KEYBOARD_BUTTON key) = 0;
+  virtual void SetConfigMouse(AlControllerButton ctrl, MOUSE_BUTTON key) = 0;
+  virtual void SetConfigGamepad(AlControllerButton ctrl, GAMEPAD_BUTTON key) = 0;
 };
+#endif
 
 typedef _IController *IController;

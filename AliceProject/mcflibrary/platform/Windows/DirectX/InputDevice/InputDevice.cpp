@@ -2,6 +2,7 @@
 
 CDefaultController::CDefaultController()
 {
+  InputDevice.CreateInput();
 }
 
 void CDefaultController::UpDate()
@@ -15,16 +16,29 @@ bool CDefaultController::GetButtonState(AlControllerButton ctrl, STATE_TYPE get_
   return false;
 }
 
-void CDefaultController::GetRelativePos(double & x, double & y)
+const AlVector2 CDefaultController::GetLeftStick() const
 {
+  return AlVector2();
 }
 
-void CDefaultController::GetAbsScreenPos(double & x, double & y)
+const AlVector2 CDefaultController::GetRightStick() const
 {
+  return AlVector2();
 }
 
-void CDefaultController::GetWheelMove(double & z)
+AlVector2 CDefaultController::GetRelativePos()
 {
+  return AlVector2();
+}
+
+AlVector2 CDefaultController::GetAbsScreenPos()
+{
+  return AlVector2();
+}
+
+double CDefaultController::GetWheelMove()
+{
+  return 0;
 }
 
 void CDefaultController::SetDefault()
@@ -37,12 +51,12 @@ void CDefaultController::SetConfigKeyBoard(AlControllerButton ctrl, KEYBOARD_BUT
   m_setting[ctrl].key = key;
 }
 
-void CDefaultController::SetConfigGamePad(AlControllerButton ctrl, GAMEPAD_BUTTON pad)
-{
-  m_setting[ctrl].pad = pad;
-}
-
 void CDefaultController::SetConfigMouse(AlControllerButton ctrl, MOUSE_BUTTON mouse)
 {
   m_setting[ctrl].mouse = mouse;
+}
+
+void CDefaultController::SetConfigGamepad(AlControllerButton ctrl, GAMEPAD_BUTTON pad)
+{
+  m_setting[ctrl].pad = pad;
 }
