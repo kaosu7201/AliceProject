@@ -1,5 +1,7 @@
 #pragma once
+#include <string>
 #include "ApplicationBase.h"
+using namespace std;
 class Platform
 {
 public:
@@ -27,6 +29,8 @@ public:
     return true;
   }
   static Platform* GetInstance() { return lpInstance; }
+
+  virtual void DrawPrintf(int x, int y, string str) = 0;
 
 protected:
   virtual void begin();

@@ -48,6 +48,9 @@
     <Filter Include="AliceLibrary\source\AlMath">
       <UniqueIdentifier>{5e210baf-0de6-4b99-b2c8-01e5715f1d1a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MCFLib\platform\Windows\DirectX\Font">
+      <UniqueIdentifier>{7aca6306-ce58-479c-8931-3abf7404e63f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -97,6 +100,9 @@
     </ClCompile>
     <ClCompile Include="AlLibrary\source\AlMath\AlMath.cpp">
       <Filter>AliceLibrary\source\AlMath</Filter>
+    </ClCompile>
+    <ClCompile Include="mcflibrary\platform\Windows\DirectX\Font\DXFont.cpp">
+      <Filter>MCFLib\platform\Windows\DirectX\Font</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +168,9 @@
     </ClInclude>
     <ClInclude Include="AlLibrary\include\AlLibrary.h">
       <Filter>AliceLibrary\include</Filter>
+    </ClInclude>
+    <ClInclude Include="mcflibrary\platform\Windows\DirectX\Font\DXFont.h">
+      <Filter>MCFLib\platform\Windows\DirectX\Font</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

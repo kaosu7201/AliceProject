@@ -28,6 +28,7 @@
     <ClCompile Include="mcflibrary\platform\Platform.cpp" />
     <ClCompile Include="mcflibrary\platform\Windows\DirectX\BlendMode\DX11BlendMode.cpp" />
     <ClCompile Include="mcflibrary\platform\Windows\DirectX\DirectX11Manager.cpp" />
+    <ClCompile Include="mcflibrary\platform\Windows\DirectX\Font\DXFont.cpp" />
     <ClCompile Include="mcflibrary\platform\Windows\DirectX\InputDevice\DXInput.cpp" />
     <ClCompile Include="mcflibrary\platform\Windows\DirectX\InputDevice\InputDevice.cpp" />
     <ClCompile Include="mcflibrary\platform\Windows\DirectX\InputDevice\KeyboardDevice.cpp" />
@@ -51,6 +52,7 @@
     <ClInclude Include="mcflibrary\platform\Platform.h" />
     <ClInclude Include="mcflibrary\platform\Windows\DirectX\BlendMode\DX11BlendMode.h" />
     <ClInclude Include="mcflibrary\platform\Windows\DirectX\DirectX11Manager.h" />
+    <ClInclude Include="mcflibrary\platform\Windows\DirectX\Font\DXFont.h" />
     <ClInclude Include="mcflibrary\platform\Windows\DirectX\InputDevice\ButtonSetEnum.h" />
     <ClInclude Include="mcflibrary\platform\Windows\DirectX\InputDevice\DXInput.h" />
     <ClInclude Include="mcflibrary\platform\Windows\DirectX\InputDevice\InputDevice.h" />

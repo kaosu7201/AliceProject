@@ -163,6 +163,7 @@ public:
     desc.BindFlags = BindFlag;
     desc.ArraySize = 1;
     desc.SampleDesc.Count = 1;
+    desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
     HRESULT hr = m_pDevice->CreateTexture2D(&desc, nullptr, &texture);
     if (FAILED(hr))
       return nullptr;
@@ -213,7 +214,7 @@ public:
   }
 
   ID3D11ShaderResourceView* Get() { return tex.Get(); }
-
+  void Set(ID3D11ShaderResourceView *_tex) { tex.Attach(_tex); }
   ShaderTexture tex;
   TexMetadata MetaData;
   int index;

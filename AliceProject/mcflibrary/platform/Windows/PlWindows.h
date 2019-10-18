@@ -18,6 +18,9 @@ public:
   {
     return new PlWindows();
   }
+
+  void DrawPrintf(int x, int y, string str);
+
 private:
   void begin()
   {

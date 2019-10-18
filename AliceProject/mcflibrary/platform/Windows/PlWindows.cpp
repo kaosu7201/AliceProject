@@ -1,4 +1,5 @@
 #include "PlWindows.h"
+#include "DirectX/Font/DXFont.h"
 
 DirectX11Manager PlWindows::DXManager;
 PlWindows::PlWindows()

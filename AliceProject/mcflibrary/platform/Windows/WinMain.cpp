@@ -1,6 +1,7 @@
 
 #include "PlWindows.h"
 #include "DirectX/Sprite/DXSprite.h"
+#include "DirectX/Font/DXFont.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
@@ -9,7 +10,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     return -1;
 
   DXSprite::begin_first();
-
+  DXFont::init();
   MSG msg = { 0 };
 
   //メッセージループ
