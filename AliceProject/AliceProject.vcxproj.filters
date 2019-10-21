@@ -104,6 +104,15 @@
     <ClCompile Include="mcflibrary\platform\Windows\DirectX\Font\DXFont.cpp">
       <Filter>MCFLib\platform\Windows\DirectX\Font</Filter>
     </ClCompile>
+    <ClCompile Include="AlLibrary\source\AlMath\AlVector3.cpp">
+      <Filter>AliceLibrary\source\AlMath</Filter>
+    </ClCompile>
+    <ClCompile Include="AlLibrary\source\AlMath\AlVector4.cpp">
+      <Filter>AliceLibrary\source\AlMath</Filter>
+    </ClCompile>
+    <ClCompile Include="AlLibrary\source\AlMath\AlColor.cpp">
+      <Filter>AliceLibrary\source\AlMath</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AlLibrary\include\AlController.h">
@@ -171,6 +180,9 @@
     </ClInclude>
     <ClInclude Include="mcflibrary\platform\Windows\DirectX\Font\DXFont.h">
       <Filter>MCFLib\platform\Windows\DirectX\Font</Filter>
+    </ClInclude>
+    <ClInclude Include="AlLibrary\include\AlColor.h">
+      <Filter>AliceLibrary\include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

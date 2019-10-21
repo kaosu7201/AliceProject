@@ -19,7 +19,7 @@ public:
     return new PlWindows();
   }
 
-  void DrawPrintf(int x, int y, string str);
+  void DrawPrintf(int x, int y, AlColor4 color, string str);
 
 private:
   void begin()

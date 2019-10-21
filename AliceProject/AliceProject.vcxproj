@@ -22,8 +22,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AlLibrary\source\AlMath\AlColor.cpp" />
     <ClCompile Include="AlLibrary\source\AlMath\AlMath.cpp" />
     <ClCompile Include="AlLibrary\source\AlMath\AlVector2.cpp" />
+    <ClCompile Include="AlLibrary\source\AlMath\AlVector3.cpp" />
+    <ClCompile Include="AlLibrary\source\AlMath\AlVector4.cpp" />
     <ClCompile Include="mcflibrary\mcfallib.cpp" />
     <ClCompile Include="mcflibrary\platform\Platform.cpp" />
     <ClCompile Include="mcflibrary\platform\Windows\DirectX\BlendMode\DX11BlendMode.cpp" />
@@ -40,6 +43,7 @@
     <ClCompile Include="source\Application\ApplicationMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AlLibrary\include\AlColor.h" />
     <ClInclude Include="AlLibrary\include\AlController.h" />
     <ClInclude Include="AlLibrary\include\AlDraw.h" />
     <ClInclude Include="AlLibrary\include\AlLibrary.h" />

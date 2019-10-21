@@ -11,6 +11,9 @@ cbuffer ConstBuff : register(b0)
   float uv_width;
   float uv_height;
   float alpha;
+  float r;
+  float g;
+  float b;
 }
 
 struct VS_INPUT
@@ -33,6 +36,9 @@ PS_INPUT vsMain(VS_INPUT pos)
   o.Pos = mul(float4(pos.Pos, 1.0f), mtxWorld);
   o.Pos = mul(float4(o.Pos), mtxProj);
   o.Col = pos.Col * alpha;
+  o.Col.r = r;
+  o.Col.g = g;
+  o.Col.b = b;
   o.Tex = pos.Tex * float2(uv_width, uv_height) + float2(uv_left, uv_top);
   return o;
 }

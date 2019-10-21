@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "ApplicationBase.h"
+#include "AlColor.h"
 using namespace std;
 class Platform
 {
@@ -30,7 +31,7 @@ public:
   }
   static Platform* GetInstance() { return lpInstance; }
 
-  virtual void DrawPrintf(int x, int y, string str) = 0;
+  virtual void DrawPrintf(int x, int y, AlColor4 color, string str) = 0;
 
 protected:
   virtual void begin();

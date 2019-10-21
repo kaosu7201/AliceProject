@@ -1,6 +1,5 @@
 #include "ApplicationBase.h"
 
-
 ApplicationBase* ApplicationBase::_lpInstance = 0;
 ApplicationBase::ApplicationBase()
 {

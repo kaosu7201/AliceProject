@@ -140,7 +140,7 @@ ID3D11ShaderResourceView* DXFont::CreateFontTexture(const char *c)
   return ShaderResView;
 }
 
-void DXFont::DrawFont(const char *c, int x, int y)
+void DXFont::DrawFont(const char *c, int x, int y, AlColor4 color)
 {
   auto texture = GetFontTexture(c);
   if (!texture) return;
@@ -148,14 +148,15 @@ void DXFont::DrawFont(const char *c, int x, int y)
   DXSprite sp(1280,720);
   sp.setTexture(&FontTex[c], true);
   sp.setPos(x + fontX, y + fontY);
-  SetDrawBlendMode(BLENDMODE_ALPHA, 255);
+  sp.setRGB(color.r, color.g, color.b);
+  SetDrawBlendMode(BLENDMODE_ALPHA, 255 * color.a);
   sp.draw(false);
   DXSprite::drawAll();
   DXSprite::clearDrawList();
   fontX += FontTex[c].blkW;
 }
 
-void PlWindows::DrawPrintf(int x, int y, string str)
+void PlWindows::DrawPrintf(int x, int y, AlColor4 color, string str)
 {
   DXFont::SetfontXY(0, 0);
   while (!str.empty())
@@ -171,7 +172,7 @@ void PlWindows::DrawPrintf(int x, int y, string str)
       c = str.substr(0, 2);
       str.erase(0, 2);
     }
-    DXFont::DrawFont(c.c_str(), x, y);
+    DXFont::DrawFont(c.c_str(), x, y, color);
   }
     
 }

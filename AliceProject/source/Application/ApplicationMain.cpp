@@ -1,5 +1,5 @@
 #include "ApplicationMain.h"
-
+#include "mcfallib.h"
 
 ApplicationMain g_oApplicationMain;
 ApplicationMain::ApplicationMain()
@@ -33,5 +33,6 @@ bool ApplicationMain::Process()
 
 bool ApplicationMain::Render()
 {
+  DrawPrintf(0, 0, AlColor4{ 1,1,1,0.5 }, "%f", 10.6754);
   return false;
 }

@@ -25,6 +25,7 @@ struct ConstantBufferData
   float uv_width;
   float uv_height;
   float alpha;
+  float r, g, b;
 };
 
 DXSprite::DXSprite(int screenWidth, int screenHeight) :
@@ -311,6 +312,9 @@ void DXSprite::drawAll()
     constantBuffer.uv_width = sp->uvW;
     constantBuffer.uv_height = sp->uvH;
     constantBuffer.alpha = sp->alpha;
+    constantBuffer.r = sp->r;
+    constantBuffer.g = sp->g;
+    constantBuffer.b = sp->b;
     PlWindows::DXManager.UpdateConstantBuffer(cb.Get(), constantBuffer);
 
     //ポリゴンを書くための各種パラメータセット
