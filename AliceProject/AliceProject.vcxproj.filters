@@ -51,6 +51,9 @@
     <Filter Include="MCFLib\platform\Windows\DirectX\Font">
       <UniqueIdentifier>{7aca6306-ce58-479c-8931-3abf7404e63f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="AliceLibrary\source\AlDraw">
+      <UniqueIdentifier>{a90ff543-f362-4336-ad36-5797a81468ec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -112,6 +115,12 @@
     </ClCompile>
     <ClCompile Include="AlLibrary\source\AlMath\AlColor.cpp">
       <Filter>AliceLibrary\source\AlMath</Filter>
+    </ClCompile>
+    <ClCompile Include="AlLibrary\source\AlDraw\AlDraw.cpp">
+      <Filter>AliceLibrary\source\AlDraw</Filter>
+    </ClCompile>
+    <ClCompile Include="AlLibrary\source\AlDraw\AlDrawImage.cpp">
+      <Filter>AliceLibrary\source\AlDraw</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -182,6 +191,9 @@
       <Filter>MCFLib\platform\Windows\DirectX\Font</Filter>
     </ClInclude>
     <ClInclude Include="AlLibrary\include\AlColor.h">
+      <Filter>AliceLibrary\include</Filter>
+    </ClInclude>
+    <ClInclude Include="AlLibrary\include\AlDrawImage.h">
       <Filter>AliceLibrary\include</Filter>
     </ClInclude>
   </ItemGroup>

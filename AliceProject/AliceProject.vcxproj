@@ -22,6 +22,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AlLibrary\source\AlDraw\AlDraw.cpp" />
+    <ClCompile Include="AlLibrary\source\AlDraw\AlDrawImage.cpp" />
     <ClCompile Include="AlLibrary\source\AlMath\AlColor.cpp" />
     <ClCompile Include="AlLibrary\source\AlMath\AlMath.cpp" />
     <ClCompile Include="AlLibrary\source\AlMath\AlVector2.cpp" />
@@ -46,6 +48,7 @@
     <ClInclude Include="AlLibrary\include\AlColor.h" />
     <ClInclude Include="AlLibrary\include\AlController.h" />
     <ClInclude Include="AlLibrary\include\AlDraw.h" />
+    <ClInclude Include="AlLibrary\include\AlDrawImage.h" />
     <ClInclude Include="AlLibrary\include\AlLibrary.h" />
     <ClInclude Include="AlLibrary\include\AlMath.h" />
     <ClInclude Include="AlLibrary\include\AlPrototype.h" />
