@@ -23,8 +23,24 @@
 #define		AL_DEG2RAD(x)			( ((x) / 180.0f ) * AL_PI )
 #define		AL_RAD2DEG(x)			( ((x) * 180.0f ) / AL_PI )
 
+/*
+#undef		AL_MATH_ASSERT_USE
+#define		AL_MATH_ASSERT_USE		( 0 )
+// */
+
+// アサートが有効な場合 
+#if			AL_MATH_ASSERT_USE
+#define		AL_MATH_ASSERT( x , ... )	SI_ASSERT(       x , __VA_ARGS__ )
+#define		AL_MATH_PRINTF( x , ... )	SI_PRINTF_DEBUG( x , __VA_ARGS__ )
+#else
+#define		AL_MATH_ASSERT( ... )
+#define		AL_MATH_ASSERT( ... )
+#endif
 
 #include	"AlVector2.h"
+#include	"AlVector3.h"
+#include	"AlVector4.h"
+
 AlF32		AlSin(AlF32 x);
 AlF32		AlASin(AlF32 x);
 AlF32		AlCos(AlF32 x);

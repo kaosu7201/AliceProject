@@ -1,6 +1,8 @@
 #include "ApplicationMain.h"
 #include "mcfallib.h"
 
+#include <AlFbxMesh.h>
+
 ApplicationMain g_oApplicationMain;
 ApplicationMain::ApplicationMain()
 {
@@ -13,6 +15,7 @@ ApplicationMain::~ApplicationMain()
 
 bool ApplicationMain::Initialize()
 {
+  LoadFbxMesh("EXLumia.fbx","Player");
   return false;
 }
 

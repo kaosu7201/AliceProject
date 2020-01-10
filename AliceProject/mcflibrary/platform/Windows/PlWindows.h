@@ -21,7 +21,12 @@ public:
 
   void DrawPrintf(int x, int y, AlColor4 color, string str);
 
+  int TextureLoad(string filename);
+  int BlkTextureLoad(string filename, int blkW, int blkH, int blkNum);
+
 private:
+  vector<DX11Texture*> Texture;
+
   void begin()
   {
     DXManager.DrawBegin();

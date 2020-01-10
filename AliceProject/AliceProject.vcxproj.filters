@@ -122,6 +122,15 @@
     <ClCompile Include="AlLibrary\source\AlDraw\AlDrawImage.cpp">
       <Filter>AliceLibrary\source\AlDraw</Filter>
     </ClCompile>
+    <ClCompile Include="AlLibrary\source\AlDraw\AlFbxMesh.cpp">
+      <Filter>AliceLibrary\source\AlDraw</Filter>
+    </ClCompile>
+    <ClCompile Include="AlLibrary\source\AlMath\AlMatrix.cpp">
+      <Filter>AliceLibrary\source\AlMath</Filter>
+    </ClCompile>
+    <ClCompile Include="AlLibrary\source\AlMath\AlMatrix44.cpp">
+      <Filter>AliceLibrary\source\AlMath</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AlLibrary\include\AlController.h">
@@ -194,6 +203,15 @@
       <Filter>AliceLibrary\include</Filter>
     </ClInclude>
     <ClInclude Include="AlLibrary\include\AlDrawImage.h">
+      <Filter>AliceLibrary\include</Filter>
+    </ClInclude>
+    <ClInclude Include="AlLibrary\include\AlFbxMesh.h">
+      <Filter>AliceLibrary\include</Filter>
+    </ClInclude>
+    <ClInclude Include="AlLibrary\include\AlMatrix.h">
+      <Filter>AliceLibrary\include</Filter>
+    </ClInclude>
+    <ClInclude Include="AlLibrary\include\AlMatrix44.h">
       <Filter>AliceLibrary\include</Filter>
     </ClInclude>
   </ItemGroup>

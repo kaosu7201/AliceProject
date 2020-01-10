@@ -1,5 +1,6 @@
 #include "PlWindows.h"
 #include "DirectX/Font/DXFont.h"
+#include "DirectX/DirectX11Manager.h"
 
 DirectX11Manager PlWindows::DXManager;
 PlWindows::PlWindows()
@@ -40,4 +41,22 @@ bool PlWindows::Render()
 {
   base::Render();
   return true;
+}
+
+int PlWindows::TextureLoad(string filename)
+{
+  int idx = Texture.size();
+  Texture.push_back(new DX11Texture);
+  
+  Texture[idx]->DX11TextureLoad(filename);
+  return idx;
+}
+
+int PlWindows::BlkTextureLoad(string filename, int blkW, int blkH, int blkNum)
+{
+  int idx = Texture.size();
+  Texture.push_back(new DX11Texture);
+  
+  Texture[idx]->DX11TextureLoad(filename);
+  return idx;
 }

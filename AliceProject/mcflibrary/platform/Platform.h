@@ -33,6 +33,9 @@ public:
 
   virtual void DrawPrintf(int x, int y, AlColor4 color, string str) = 0;
 
+  virtual int TextureLoad(string filename) = 0;
+  virtual int BlkTextureLoad(string filename, int blkW, int blkH, int blkNum) = 0;
+
 protected:
   virtual void begin();
   virtual void end();

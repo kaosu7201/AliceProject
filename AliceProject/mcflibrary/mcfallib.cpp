@@ -11,3 +11,23 @@ void DrawPrintf(int x, int y, AlColor4 color, char* str, ...)
 
   Platform::GetInstance()->DrawPrintf(x, y, color, sz);
 }
+
+int TextureLoad(string filename)
+{
+  return Platform::GetInstance()->TextureLoad(filename);
+}
+
+int BlkTextureLoad(string filename, int blkW, int blkH, int blkNum)
+{
+  return Platform::GetInstance()->BlkTextureLoad(filename, blkW, blkH, blkNum);
+}
+
+int TextureLoad(const char * filename)
+{
+  return Platform::GetInstance()->TextureLoad(filename);
+}
+
+int BlkTextureLoad(const char * filename, int blkW, int blkH, int blkNum)
+{
+  return Platform::GetInstance()->BlkTextureLoad(filename, blkW, blkH, blkNum);
+}

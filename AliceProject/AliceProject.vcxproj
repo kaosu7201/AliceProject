@@ -24,8 +24,11 @@
   <ItemGroup>
     <ClCompile Include="AlLibrary\source\AlDraw\AlDraw.cpp" />
     <ClCompile Include="AlLibrary\source\AlDraw\AlDrawImage.cpp" />
+    <ClCompile Include="AlLibrary\source\AlDraw\AlFbxMesh.cpp" />
     <ClCompile Include="AlLibrary\source\AlMath\AlColor.cpp" />
     <ClCompile Include="AlLibrary\source\AlMath\AlMath.cpp" />
+    <ClCompile Include="AlLibrary\source\AlMath\AlMatrix.cpp" />
+    <ClCompile Include="AlLibrary\source\AlMath\AlMatrix44.cpp" />
     <ClCompile Include="AlLibrary\source\AlMath\AlVector2.cpp" />
     <ClCompile Include="AlLibrary\source\AlMath\AlVector3.cpp" />
     <ClCompile Include="AlLibrary\source\AlMath\AlVector4.cpp" />
@@ -49,8 +52,11 @@
     <ClInclude Include="AlLibrary\include\AlController.h" />
     <ClInclude Include="AlLibrary\include\AlDraw.h" />
     <ClInclude Include="AlLibrary\include\AlDrawImage.h" />
+    <ClInclude Include="AlLibrary\include\AlFbxMesh.h" />
     <ClInclude Include="AlLibrary\include\AlLibrary.h" />
     <ClInclude Include="AlLibrary\include\AlMath.h" />
+    <ClInclude Include="AlLibrary\include\AlMatrix.h" />
+    <ClInclude Include="AlLibrary\include\AlMatrix44.h" />
     <ClInclude Include="AlLibrary\include\AlPrototype.h" />
     <ClInclude Include="AlLibrary\include\AlVector2.h" />
     <ClInclude Include="AlLibrary\include\AlVector3.h" />
@@ -157,13 +163,13 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>false</ConformanceMode>
-      <AdditionalIncludeDirectories>.;source;AlLibrary\include;mcflibrary</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;source;AlLibrary\include;mcflibrary;FBX SDK\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>
-      </AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>.;FBX SDK\lib\vs2015\x64</AdditionalLibraryDirectories>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
