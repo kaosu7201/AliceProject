@@ -39,6 +39,9 @@ void AlFbxMesh::Update()
 
 void AlFbxMesh::Render()
 {
+  Platform* lpPlatform = Platform::GetInstance();
+
+  lpPlatform->DrawFbxMesh(this);
 }
 
 void AlFbxMesh::Create(const string szFileName)

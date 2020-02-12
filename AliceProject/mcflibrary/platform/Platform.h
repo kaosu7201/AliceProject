@@ -2,6 +2,8 @@
 #include <string>
 #include "ApplicationBase.h"
 #include "AlColor.h"
+#include "AlFbxMesh.h"
+
 using namespace std;
 class Platform
 {
@@ -32,6 +34,7 @@ public:
   static Platform* GetInstance() { return lpInstance; }
 
   virtual void DrawPrintf(int x, int y, AlColor4 color, string str) = 0;
+  virtual void DrawFbxMesh(AlFbxMesh *mesh) = 0;
 
   virtual int TextureLoad(string filename) = 0;
   virtual int BlkTextureLoad(string filename, int blkW, int blkH, int blkNum) = 0;

@@ -9,6 +9,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
   if (FAILED(lpPlatform->DXManager.Init(hInstance, nCmdShow)))
     return -1;
 
+  lpPlatform->Initialize();
+
   DXSprite::begin_first();
   DXFont::init();
   MSG msg = { 0 };

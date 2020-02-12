@@ -5,7 +5,7 @@
 DirectX11Manager PlWindows::DXManager;
 PlWindows::PlWindows()
 {
-  Initialize();
+ 
 }
 
 
@@ -59,4 +59,9 @@ int PlWindows::BlkTextureLoad(string filename, int blkW, int blkH, int blkNum)
   
   Texture[idx]->DX11TextureLoad(filename);
   return idx;
+}
+
+void PlWindows::DrawFbxMesh(AlFbxMesh *mesh)
+{
+
 }
