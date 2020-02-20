@@ -12,6 +12,8 @@
 #include "AlMath.h"
 #include "AlColor.h"
 
+using namespace std;
+
 struct PolygonVertex
 {
   AlVector3 Pos;

@@ -12,9 +12,6 @@
     <Filter Include="AliceLibrary\include">
       <UniqueIdentifier>{edea839f-2371-44d8-8834-2d3b80103c9b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="AliceLibrary\source">
-      <UniqueIdentifier>{26491152-88c9-4ced-aa34-b73e2dc0e0c5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="AliceLibrary\Shaders">
       <UniqueIdentifier>{93a37740-e1be-4160-aecb-69a1efff9e4d}</UniqueIdentifier>
     </Filter>
@@ -45,13 +42,16 @@
     <Filter Include="Source File\ApplicationCode">
       <UniqueIdentifier>{847bbefa-328b-4f61-b84e-735967297508}</UniqueIdentifier>
     </Filter>
-    <Filter Include="AliceLibrary\source\AlMath">
-      <UniqueIdentifier>{5e210baf-0de6-4b99-b2c8-01e5715f1d1a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="MCFLib\platform\Windows\DirectX\Font">
       <UniqueIdentifier>{7aca6306-ce58-479c-8931-3abf7404e63f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="AliceLibrary\source\AlDraw">
+    <Filter Include="AliceLibrary\Shaders\source">
+      <UniqueIdentifier>{26491152-88c9-4ced-aa34-b73e2dc0e0c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AliceLibrary\Shaders\source\AlMath">
+      <UniqueIdentifier>{5e210baf-0de6-4b99-b2c8-01e5715f1d1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AliceLibrary\Shaders\source\AlDraw">
       <UniqueIdentifier>{a90ff543-f362-4336-ad36-5797a81468ec}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -99,37 +99,37 @@
       <Filter>Source File\ApplicationCode</Filter>
     </ClCompile>
     <ClCompile Include="AlLibrary\source\AlMath\AlVector2.cpp">
-      <Filter>AliceLibrary\source\AlMath</Filter>
+      <Filter>AliceLibrary\Shaders\source\AlMath</Filter>
     </ClCompile>
     <ClCompile Include="AlLibrary\source\AlMath\AlMath.cpp">
-      <Filter>AliceLibrary\source\AlMath</Filter>
+      <Filter>AliceLibrary\Shaders\source\AlMath</Filter>
     </ClCompile>
     <ClCompile Include="mcflibrary\platform\Windows\DirectX\Font\DXFont.cpp">
       <Filter>MCFLib\platform\Windows\DirectX\Font</Filter>
     </ClCompile>
     <ClCompile Include="AlLibrary\source\AlMath\AlVector3.cpp">
-      <Filter>AliceLibrary\source\AlMath</Filter>
+      <Filter>AliceLibrary\Shaders\source\AlMath</Filter>
     </ClCompile>
     <ClCompile Include="AlLibrary\source\AlMath\AlVector4.cpp">
-      <Filter>AliceLibrary\source\AlMath</Filter>
+      <Filter>AliceLibrary\Shaders\source\AlMath</Filter>
     </ClCompile>
     <ClCompile Include="AlLibrary\source\AlMath\AlColor.cpp">
-      <Filter>AliceLibrary\source\AlMath</Filter>
+      <Filter>AliceLibrary\Shaders\source\AlMath</Filter>
     </ClCompile>
     <ClCompile Include="AlLibrary\source\AlDraw\AlDraw.cpp">
-      <Filter>AliceLibrary\source\AlDraw</Filter>
+      <Filter>AliceLibrary\Shaders\source\AlDraw</Filter>
     </ClCompile>
     <ClCompile Include="AlLibrary\source\AlDraw\AlDrawImage.cpp">
-      <Filter>AliceLibrary\source\AlDraw</Filter>
+      <Filter>AliceLibrary\Shaders\source\AlDraw</Filter>
     </ClCompile>
     <ClCompile Include="AlLibrary\source\AlDraw\AlFbxMesh.cpp">
-      <Filter>AliceLibrary\source\AlDraw</Filter>
+      <Filter>AliceLibrary\Shaders\source\AlDraw</Filter>
     </ClCompile>
     <ClCompile Include="AlLibrary\source\AlMath\AlMatrix.cpp">
-      <Filter>AliceLibrary\source\AlMath</Filter>
+      <Filter>AliceLibrary\Shaders\source\AlMath</Filter>
     </ClCompile>
     <ClCompile Include="AlLibrary\source\AlMath\AlMatrix44.cpp">
-      <Filter>AliceLibrary\source\AlMath</Filter>
+      <Filter>AliceLibrary\Shaders\source\AlMath</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
