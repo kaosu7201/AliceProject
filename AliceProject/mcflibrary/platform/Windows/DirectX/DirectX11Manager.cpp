@@ -677,9 +677,15 @@ void DirectX11Manager::Draw(UINT VertexNum)
 {
   m_pImContext->Draw(VertexNum, 0);
 }
+
 void DirectX11Manager::DrawIndexed(UINT VertexNum)
 {
   m_pImContext->DrawIndexed(VertexNum, 0, 0);
+}
+
+void DirectX11Manager::DrawIndexed(UINT VertexNum, int start)
+{
+	m_pImContext->DrawIndexed(VertexNum, start, 0);
 }
 
 DX11Effect* CreateShader(const string & filename)

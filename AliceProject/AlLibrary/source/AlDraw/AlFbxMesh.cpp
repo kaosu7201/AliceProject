@@ -39,109 +39,126 @@ void AlFbxMesh::Update()
 
 void AlFbxMesh::Render()
 {
-  Platform* lpPlatform = Platform::GetInstance();
+	Platform *lpPlatform = Platform::GetInstance();
 
-  lpPlatform->DrawFbxMesh(this);
+	//	モーションが存在する場合はSkinning
+	//if (motion[MotionName].NumFrame > 0) {
+	//	Skinning();
+	//}
+
+	int start = 0;
+	for (int m = 0; m < NumMesh; m++) {
+		int iTexture = -1;
+		int material_no = MeshMaterial[m];
+		
+		if (Textures[material_no] != -1) {
+			iTexture = Textures[material_no];
+		}
+		//	描画
+		lpPlatform->DrawIndexed(start, MaterialFaces[m], Indices, Vertices, iTexture);
+		start += MaterialFaces[m] * 3;
+	}
 }
 
 void AlFbxMesh::Create(const string szFileName)
 {
-  FbxManager* manager = FbxManager::Create();
+	FbxManager* manager = FbxManager::Create();
 
-  FbxIOSettings* ios = FbxIOSettings::Create(manager, IOSROOT);
-  manager->SetIOSettings(ios);
-  FbxScene* scene = FbxScene::Create(manager, "");
+	FbxIOSettings* ios = FbxIOSettings::Create(manager, IOSROOT);
+	manager->SetIOSettings(ios);
+	FbxScene* scene = FbxScene::Create(manager, "");
 
-  FbxImporter* importer = FbxImporter::Create(manager, "");
-  importer->Initialize(szFileName.c_str(), -1, manager->GetIOSettings());
-  importer->Import(scene);
-  importer->Destroy();
+	FbxImporter* importer = FbxImporter::Create(manager, "");
+	importer->Initialize(szFileName.c_str(), -1, manager->GetIOSettings());
+	importer->Import(scene);
+	importer->Destroy();
 
-  FbxGeometryConverter geometryConverter(manager);
-  geometryConverter.Triangulate(scene, true);
-  geometryConverter.RemoveBadPolygonsFromMeshes(scene);
+	FbxGeometryConverter geometryConverter(manager);
+	geometryConverter.Triangulate(scene, true);
+	geometryConverter.RemoveBadPolygonsFromMeshes(scene);
 
-  // TIPS:マテリアルごとにメッシュを分離
-  geometryConverter.SplitMeshesPerMaterial(scene, true);
+	// TIPS:マテリアルごとにメッシュを分離
+	geometryConverter.SplitMeshesPerMaterial(scene, true);
 
-  NumBone = 0;
+	NumBone = 0;
 
-  // シーンに含まれるメッシュ数
-  NumMesh = scene->GetSrcObjectCount<FbxMesh>();
+	// シーンに含まれるメッシュ数
+	NumMesh = scene->GetSrcObjectCount<FbxMesh>();
 
-  //	頂点数計算
-  int work = 0;
-  for (int m = 0; m < NumMesh; m++)
-  {
-    FbxMesh* mesh = scene->GetSrcObject<FbxMesh>(m);
-    int num = mesh->GetPolygonVertexCount();
-    work += num; // 合計頂点数
-  }
+	//	頂点数計算
+	int work = 0;
+	for (int m = 0; m < NumMesh; m++)
+	{
+		FbxMesh* mesh = scene->GetSrcObject<FbxMesh>(m);
+		int num = mesh->GetPolygonVertexCount();
+		work += num; // 合計頂点数
+	}
 
-  //	頂点確保
-  Vertices = new PolygonVertex[work];
-  Indices = new AlU32[work];
-  Weights = new WEIGHT[work];
+	//	頂点確保
+	Vertices.reserve(work);
+	Indices.reserve(work);
+	Weights.reserve(work);
 
-  NumVertices = 0;
-  //	初期化
-  for (int v = 0; v < work; v++)
-  {
-    Weights[v].count = 0;
-  }
+	NumVertices = 0;
+	//	初期化
+	for (int v = 0; v < work; v++)
+	{
+		Weights.push_back(WEIGHT());
+		Weights[v].count = 0;
+	}
 
-  //材質ごとのポリゴン頂点数
-  MaterialFaces = new int[NumMesh];
-  MeshMaterial = new int[NumMesh];
-  Textures = new int[NumMesh];
-  NTextures = new int[NumMesh];
-  for (int m = 0; m < NumMesh; m++)
-  {
-    Textures[m] = NULL;
-    NTextures[m] = NULL;
-  }
+	//材質ごとのポリゴン頂点数
+	MaterialFaces = new int[NumMesh];
+	MeshMaterial = new int[NumMesh];
+	Textures = new int[NumMesh];
+	NTextures = new int[NumMesh];
+	for (int m = 0; m < NumMesh; m++)
+	{
+		Textures[m] = NULL;
+		NTextures[m] = NULL;
+	}
 
-  //	頂点読み込み
-  for (int m = 0; m < NumMesh; m++)
-  {
-    FbxMesh* mesh = scene->GetSrcObject<FbxMesh>(m);
-    int num = mesh->GetPolygonVertexCount();
+	//	頂点読み込み
+	for (int m = 0; m < NumMesh; m++)
+	{
+		FbxMesh* mesh = scene->GetSrcObject<FbxMesh>(m);
+		int num = mesh->GetPolygonVertexCount();
 
-    //	頂点情報読み込み
-    LoadPosition(mesh);		//	座標読み込み
-    LoadNormal(mesh);		//	法線読み込み
-    LoadUV(mesh);			//	テクスチャUV
-    LoadVertexColor(mesh);	//	頂点カラー読み込み
+		//	頂点情報読み込み
+		LoadPosition(mesh);		//	座標読み込み
+		LoadNormal(mesh);		//	法線読み込み
+		LoadUV(mesh);			//	テクスチャUV
+		LoadVertexColor(mesh);	//	頂点カラー読み込み
 
-    //	インデックス設定(三角形ごと)
-    for (int i = 0; i < num; i += 3)
-    {
-      Indices[i + 0 + NumVertices] = i + 2 + NumVertices;
-      Indices[i + 1 + NumVertices] = i + 1 + NumVertices;
-      Indices[i + 2 + NumVertices] = i + 0 + NumVertices;
-    }
+		//	インデックス設定(三角形ごと)
+		for (int i = 0; i < num; i += 3)
+		{
+			Indices.push_back(i + 2 + NumVertices);
+			Indices.push_back(i + 1 + NumVertices);
+			Indices.push_back(i + 0 + NumVertices);
+		}
 
-    //	ボーン読み込み
-    //LoadBone(mesh);
+		//	ボーン読み込み
+		//LoadBone(mesh);
 
-    //	メッシュの使用材質取得
-    FbxLayerElementMaterial* LEM = mesh->GetElementMaterial();
-    if (LEM != NULL)
-    {
-      //	ポリゴンに貼られている材質番号
-      int material_index = LEM->GetIndexArray().GetAt(0);
-      //	メッシュ材質のmaterial_index番目を取得
-      FbxSurfaceMaterial* material = mesh->GetNode()->GetSrcObject<FbxSurfaceMaterial>(material_index);
-      LoadMaterial(m, material);
-    }
-    //	使用材質設定
-    MeshMaterial[m] = m;
-    MaterialFaces[m] = num / 3;
+		//	メッシュの使用材質取得
+		FbxLayerElementMaterial* LEM = mesh->GetElementMaterial();
+		if (LEM != NULL)
+		{
+			//	ポリゴンに貼られている材質番号
+			int material_index = LEM->GetIndexArray().GetAt(0);
+			//	メッシュ材質のmaterial_index番目を取得
+			FbxSurfaceMaterial* material = mesh->GetNode()->GetSrcObject<FbxSurfaceMaterial>(material_index);
+			LoadMaterial(m, material);
+		}
+		//	使用材質設定
+		MeshMaterial[m] = m;
+		MaterialFaces[m] = num / 3;
 
-    NumVertices += num;
-  }
+		NumVertices += num;
+	}
 
-  manager->Destroy();	//これを呼んでおけばFBX SDKのメモリ解放忘れはないはずです。
+	manager->Destroy();	//これを呼んでおけばFBX SDKのメモリ解放忘れはないはずです。
 }
 
 //****************************************************************
@@ -172,6 +189,8 @@ void AlFbxMesh::LoadPosition(FbxMesh* mesh)
   for (int v = 0; v < num; v++)
   {
     int vindex = index[v];
+
+	Vertices.push_back(PolygonVertex());
 
     Vertices[v + NumVertices].Pos.x = (float)-source[vindex][0];
     Vertices[v + NumVertices].Pos.y = (float)-source[vindex][1];

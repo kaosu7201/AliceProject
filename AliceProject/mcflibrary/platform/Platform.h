@@ -34,7 +34,7 @@ public:
   static Platform* GetInstance() { return lpInstance; }
 
   virtual void DrawPrintf(int x, int y, AlColor4 color, string str) = 0;
-  virtual void DrawFbxMesh(AlFbxMesh *mesh) = 0;
+  virtual void DrawIndexed(int start, int FacesNum, vector<AlU32> lpIndex, vector<PolygonVertex> Vertex, int hTexture) = 0;
 
   virtual int TextureLoad(string filename) = 0;
   virtual int BlkTextureLoad(string filename, int blkW, int blkH, int blkNum) = 0;

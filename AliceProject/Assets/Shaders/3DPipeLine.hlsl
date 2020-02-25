@@ -21,21 +21,21 @@ cbuffer ConstantBuffer
 {
   float4x4 World;         //ワールド変換行列
   float4x4 View;          //ビュー変換行列
-  float4x4 Projection;    //透視射影変換行列
+  float4x4 Proj;    //透視射影変換行列
 }
 
 PS_INPUT vsMain(VS_INPUT pos)
 {
   PS_INPUT o = (PS_INPUT)0;
 
-  o.pos = mul(pos.pos, World);
-  o.pos = mul(o.pos, View);
-  o.pos = mul(o.pos, Projection);
-  o.col = pos.col;
+  o.Pos = mul(float4(pos.Pos, 1.0f), World);
+  o.Pos = mul(float4(o.Pos), View);
+  o.Pos = mul(float4(o.Pos), Proj);
+  o.Col = pos.Col;
 
-  o.tex = pos.tex;
+  o.Tex = pos.Tex;
 
-  return output;
+  return o;
 }
 
 float4 psMain(PS_INPUT input) : SV_TARGET
