@@ -222,6 +222,7 @@ public:
   int blkW;
   int blkH;
   int blkNum;
+  string FileName;
 private:
   void LoadTextureMetaData(const wchar_t* filename, TexMetadata& metadata);
 

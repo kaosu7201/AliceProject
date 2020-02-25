@@ -6,14 +6,12 @@ struct VS_INPUT
 {
   float3 Pos : POSITION;
   float3 Nor : NORMAL;
-  float4 Col : COLOR;
   float2 Tex : TEXCOORD;
 };
 
 struct PS_INPUT
 {
   float4 Pos : SV_POSITION;
-  float4 Col : COLOR;
   float2 Tex : TEXCOORD;
 };
 
@@ -31,7 +29,6 @@ PS_INPUT vsMain(VS_INPUT pos)
   o.Pos = mul(float4(pos.Pos, 1.0f), World);
   o.Pos = mul(float4(o.Pos), View);
   o.Pos = mul(float4(o.Pos), Proj);
-  o.Col = pos.Col;
 
   o.Tex = pos.Tex;
 
@@ -41,6 +38,6 @@ PS_INPUT vsMain(VS_INPUT pos)
 float4 psMain(PS_INPUT input) : SV_TARGET
 {
   float4 result = 0;
-  result = Diffuse.Sample(samLinear, input.Tex) * input.Col;
+  result = Diffuse.Sample(samLinear, input.Tex);
   return result;
 }

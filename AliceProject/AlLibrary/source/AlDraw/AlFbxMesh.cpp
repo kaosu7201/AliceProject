@@ -198,7 +198,7 @@ void AlFbxMesh::LoadPosition(FbxMesh* mesh)
 
     Vertices[v + NumVertices].uv.x = 0;
     Vertices[v + NumVertices].uv.y = 0;
-    Vertices[v + NumVertices].color = 0xFFFFFFFF;
+	//Vertices[v + NumVertices].color.Set(1.0f, 1.0f, 1.0f, 1.0f);
   }
 }
 
@@ -261,7 +261,7 @@ void AlFbxMesh::LoadVertexColor(FbxMesh* mesh)
         FbxColor c = element->GetDirectArray().GetAt(index->GetAt(j));
         // DWORDå^ÇÃÉJÉâÅ[çÏê¨        
         AlU32 color = ((AlU32)(c.mAlpha * 255) << 24) + ((AlU32)(c.mRed * 255) << 16) + ((AlU32)(c.mGreen * 255) << 8) + ((AlU32)(c.mBlue * 255));
-        Vertices[j + NumVertices].color = color;
+		//Vertices[j + NumVertices].color.Set(c.mAlpha,c.mRed, c.mGreen, c.mBlue);
       }
     }
   }
@@ -292,7 +292,7 @@ void AlFbxMesh::LoadMaterial(int index, FbxSurfaceMaterial * material)
       path = FileTex->GetFileName();
     }
   }
-  if (path == NULL) return;
+  if (path == NULL) path = "Untitled.png";
 
   //  C:\\AAA\\BBB\\a.fbx  C:/AAA/BBB/a.fbx
   const char* name = &path[strlen(path)];

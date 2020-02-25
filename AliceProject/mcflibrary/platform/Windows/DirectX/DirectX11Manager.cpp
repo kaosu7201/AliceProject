@@ -722,18 +722,33 @@ void DX11Texture::DX11BlkTextureLoad(string filename, int blkW, int blkH, int bl
 
 void DX11Texture::DX11TextureLoad(const char * filename)
 {
-  wchar_t ws[512];
+	wchar_t ws[512];
 
-  setlocale(LC_CTYPE, "jpn");
-  mbstowcs(ws, filename, 512);
-  LoadTextureMetaData(ws, MetaData);
+	setlocale(LC_CTYPE, "jpn");
+	mbstowcs(ws, filename, 512);
+	LoadTextureMetaData(ws, MetaData);
 
-  blkW = MetaData.width;
-  blkH = MetaData.height;
-  blkNum = 1;
-  index = 0;
+	blkW = MetaData.width;
+	blkH = MetaData.height;
+	blkNum = 1;
+	index = 0;
+	ID3D11ShaderResourceView* lpRes = PlWindows::DXManager.CreateTextureFromFile(filename);
+	FileName = filename;
+	if (!lpRes)
+	{
+		setlocale(LC_CTYPE, "jpn");
+		mbstowcs(ws, "texture/Untitled.png", 512);
+		LoadTextureMetaData(ws, MetaData);
 
-  tex.Attach(PlWindows::DXManager.CreateTextureFromFile(filename));
+		blkW = MetaData.width;
+		blkH = MetaData.height;
+		blkNum = 1;
+		index = 0;
+		lpRes = PlWindows::DXManager.CreateTextureFromFile("texture/Untitled.png");
+		FileName = "texture/Untitled.png";
+	}
+	tex.Attach(lpRes);
+	
 }
 
 void DX11Texture::DX11BlkTextureLoad(const char * filename, int blkW, int blkH, int blkNum)

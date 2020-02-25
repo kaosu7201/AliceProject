@@ -19,8 +19,8 @@ struct PolygonVertex
 {
   AlVector3 Pos;
   AlVector3 Normal;
-  AlU32 color;
   AlVector2 uv;
+  //AlColor4 color;
 };
 
 typedef PolygonVertex VERTEX;

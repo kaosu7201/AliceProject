@@ -15,8 +15,9 @@ ApplicationMain::~ApplicationMain()
 
 bool ApplicationMain::Initialize()
 {
-  LoadFbxMesh("EXLumia.fbx","Player");
-  return false;
+	LoadFbxMesh("EXLumia.fbx","Player");
+	//LoadFbxMesh("a.fbx", "Player");
+	return false;
 }
 
 bool ApplicationMain::Terminate()
