@@ -222,5 +222,8 @@
     <FxCompile Include="Assets\Shaders\3DPipeLine.hlsl">
       <Filter>AliceLibrary\Shaders</Filter>
     </FxCompile>
+    <FxCompile Include="Assets\Shaders\FXAA.hlsl">
+      <Filter>AliceLibrary\Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

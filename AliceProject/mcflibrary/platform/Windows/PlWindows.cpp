@@ -70,7 +70,7 @@ int PlWindows::BlkTextureLoad(string filename, int blkW, int blkH, int blkNum)
 
 void PlWindows::DrawIndexed(int start, int FacesNum, vector<AlU32> lpIndex, vector<PolygonVertex> Vertex, int hTexture)
 {
-	SetDrawBlendMode(1, BLENDMODE_PMA_ALPHA);
+	SetDrawBlendMode(BLENDMODE_NOBLEND, 255);
 	//コンスタントバッファの作成
 	struct ConstantBufferData
 	{
@@ -108,7 +108,7 @@ void PlWindows::DrawIndexed(int start, int FacesNum, vector<AlU32> lpIndex, vect
 
 	worldMatrix = XMMatrixScaling(0.1f, 0.1f, 0.1f);
 
-	XMVECTOR eye = XMVectorSet(2.0f, 2.0f, -2.0f, 0.0f);
+	XMVECTOR eye = XMVectorSet(0.0f, 0.0f, -5.0f, 0.0f);
 	XMVECTOR focus = XMVectorSet(0.0f, 0.0f, 0.0f, 0.0f);
 	XMVECTOR up = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
 	XMMATRIX viewMatrix = XMMatrixLookAtLH(eye, focus, up);

@@ -24,283 +24,283 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 HRESULT DirectX11Manager::Init(HINSTANCE hInstance, int cCmdShow)
 {
-  WNDCLASSEX wcex = { sizeof(WNDCLASSEX), CS_CLASSDC, WndProc, 0L, 0L, hInstance, NULL, NULL, NULL, NULL, "AliceGame", NULL };
-  if (!RegisterClassEx(&wcex))
-  {
-    return E_FAIL;
-  }
+	WNDCLASSEX wcex = { sizeof(WNDCLASSEX), CS_CLASSDC, WndProc, 0L, 0L, hInstance, NULL, NULL, NULL, NULL, "AliceGame", NULL };
+	if (!RegisterClassEx(&wcex))
+	{
+		return E_FAIL;
+	}
 
-  RECT rc = { 0, 0, 1280, 720 };
+	RECT rc = { 0, 0, 1280, 720 };
 
-  hWnd = CreateWindow(wcex.lpszClassName, "AliceGame", WS_DLGFRAME,
-    CW_USEDEFAULT, CW_USEDEFAULT, rc.right - rc.left, rc.bottom - rc.top,
-    NULL, NULL, hInstance, NULL);
-  if (!hWnd)
-  {
-    return E_FAIL;
-  }
+	hWnd = CreateWindow(wcex.lpszClassName, "AliceGame", WS_DLGFRAME,
+		CW_USEDEFAULT, CW_USEDEFAULT, rc.right - rc.left, rc.bottom - rc.top,
+		NULL, NULL, hInstance, NULL);
+	if (!hWnd)
+	{
+		return E_FAIL;
+	}
 
-  RECT wRect, cRect;  // ウィンドウ全体の矩形、クライアント領域の矩形
-  int ww, wh;         // ウィンドウ全体の幅、高さ
-  int cw, ch;         // クライアント領域の幅、高さ
+	RECT wRect, cRect;  // ウィンドウ全体の矩形、クライアント領域の矩形
+	int ww, wh;         // ウィンドウ全体の幅、高さ
+	int cw, ch;         // クライアント領域の幅、高さ
 
-  // ウィンドウ全体の幅・高さを計算
-  GetWindowRect(hWnd, &wRect);
-  ww = wRect.right - wRect.left;
-  wh = wRect.bottom - wRect.top;
-  // クライアント領域の幅・高さを計算
-  GetClientRect(hWnd, &cRect);
-  cw = cRect.right - cRect.left;
-  ch = cRect.bottom - cRect.top;
-  // クライアント領域以外に必要なサイズを計算
-  ww = ww - cw;
-  wh = wh - ch;
-  // ウィンドウ全体に必要なサイズを計算
-  ww = 1280 + ww;
-  wh = 720 + wh;
+	// ウィンドウ全体の幅・高さを計算
+	GetWindowRect(hWnd, &wRect);
+	ww = wRect.right - wRect.left;
+	wh = wRect.bottom - wRect.top;
+	// クライアント領域の幅・高さを計算
+	GetClientRect(hWnd, &cRect);
+	cw = cRect.right - cRect.left;
+	ch = cRect.bottom - cRect.top;
+	// クライアント領域以外に必要なサイズを計算
+	ww = ww - cw;
+	wh = wh - ch;
+	// ウィンドウ全体に必要なサイズを計算
+	ww = 1280 + ww;
+	wh = 720 + wh;
 
-  // 計算した幅と高さをウィンドウに設定
-  SetWindowPos(hWnd, HWND_TOP, 0, 0, ww, wh, SWP_NOMOVE);
+	// 計算した幅と高さをウィンドウに設定
+	SetWindowPos(hWnd, HWND_TOP, 0, 0, ww, wh, SWP_NOMOVE);
 
-  ShowWindow(hWnd, SW_SHOW);
-  UpdateWindow(hWnd);							// ウィンドウの表示
-  SetFocus(hWnd);								// フォーカスのセット
+	ShowWindow(hWnd, SW_SHOW);
+	UpdateWindow(hWnd);							// ウィンドウの表示
+	SetFocus(hWnd);								// フォーカスのセット
 
 #pragma region HardWare Check
-  IDXGIFactory* factory;
-  IDXGIAdapter* adapter;
-  IDXGIOutput* adapterOutput;
-  unsigned int numModes = 0;
-  size_t stringLength;
-  DXGI_ADAPTER_DESC adapterDesc;
+	IDXGIFactory* factory;
+	IDXGIAdapter* adapter;
+	IDXGIOutput* adapterOutput;
+	unsigned int numModes = 0;
+	size_t stringLength;
+	DXGI_ADAPTER_DESC adapterDesc;
 
-  //グラフィック インタフェース ファクトリを作成
-  auto hr = CreateDXGIFactory(__uuidof(IDXGIFactory), (void**)& factory);
-  if (FAILED(hr))
-  {
-    return hr;
-  }
+	//グラフィック インタフェース ファクトリを作成
+	auto hr = CreateDXGIFactory(__uuidof(IDXGIFactory), (void**)& factory);
+	if (FAILED(hr))
+	{
+		return hr;
+	}
 
-  int GPUNumber = 0;
-  int GPUMaxMem = 0;
-  //一番強いGPUアダプタを検索
-  for (int i = 0; i < 100; i++)
-  {
-    IDXGIAdapter* add;
-    hr = factory->EnumAdapters(i, &add);
-    if (FAILED(hr))
-      break;
-    hr = add->GetDesc(&adapterDesc);
+	int GPUNumber = 0;
+	int GPUMaxMem = 0;
+	//一番強いGPUアダプタを検索
+	for (int i = 0; i < 100; i++)
+	{
+		IDXGIAdapter* add;
+		hr = factory->EnumAdapters(i, &add);
+		if (FAILED(hr))
+			break;
+		hr = add->GetDesc(&adapterDesc);
 
-    char videoCardDescription[128];
-    //ビデオカード名を取得
-    int error = wcstombs_s(&stringLength, videoCardDescription, 128, adapterDesc.Description, 128);
-    if (error != 0)
-    {
-      break;
-    }
-    cout << "ビデオカード名 : " << videoCardDescription << endl;
+		char videoCardDescription[128];
+		//ビデオカード名を取得
+		int error = wcstombs_s(&stringLength, videoCardDescription, 128, adapterDesc.Description, 128);
+		if (error != 0)
+		{
+			break;
+		}
+		cout << "ビデオカード名 : " << videoCardDescription << endl;
 
-    //ビデオカードメモリを取得（MB単位）
-    int videoCardMemory = (int)(adapterDesc.DedicatedVideoMemory / 1024 / 1024);
-    cout << "ビデオメモリー : " << videoCardMemory << endl;
+		//ビデオカードメモリを取得（MB単位）
+		int videoCardMemory = (int)(adapterDesc.DedicatedVideoMemory / 1024 / 1024);
+		cout << "ビデオメモリー : " << videoCardMemory << endl;
 
-    //アウトプット（モニター）に番号IDを付ける
-    hr = add->EnumOutputs(0, &adapterOutput);
-    if (FAILED(hr))
-    {
-      continue;
-    }
+		//アウトプット（モニター）に番号IDを付ける
+		hr = add->EnumOutputs(0, &adapterOutput);
+		if (FAILED(hr))
+		{
+			continue;
+		}
 
-    //DXGI_FORMAT_R8G8B8A8_UNORM の表示形式数を取得する
-    hr = adapterOutput->GetDisplayModeList(DXGI_FORMAT_R8G8B8A8_UNORM, DXGI_ENUM_MODES_INTERLACED, &numModes, NULL);
-    if (FAILED(hr))
-    {
-      continue;
-    }
-    cout << "RBGA8_UNORM Count : " << numModes << endl;
+		//DXGI_FORMAT_R8G8B8A8_UNORM の表示形式数を取得する
+		hr = adapterOutput->GetDisplayModeList(DXGI_FORMAT_R8G8B8A8_UNORM, DXGI_ENUM_MODES_INTERLACED, &numModes, NULL);
+		if (FAILED(hr))
+		{
+			continue;
+		}
+		cout << "RBGA8_UNORM Count : " << numModes << endl;
 
-    if (videoCardMemory > GPUMaxMem)
-    {
-      GPUMaxMem = videoCardMemory;
-      GPUNumber = i;
-    }
-    add->Release();
-    //アダプタアウトプットを解放
-    adapterOutput->Release();
-    adapterOutput = 0;
-  }
+		if (videoCardMemory > GPUMaxMem)
+		{
+			GPUMaxMem = videoCardMemory;
+			GPUNumber = i;
+		}
+		add->Release();
+		//アダプタアウトプットを解放
+		adapterOutput->Release();
+		adapterOutput = 0;
+	}
 
-  //グラフィック インタフェース アダプターを作成
-  hr = factory->EnumAdapters(GPUNumber, &adapter);
-  if (FAILED(hr))
-  {
-    return hr;
-  }
+	//グラフィック インタフェース アダプターを作成
+	hr = factory->EnumAdapters(GPUNumber, &adapter);
+	if (FAILED(hr))
+	{
+		return hr;
+	}
 #pragma endregion
 
 #pragma region DirectX11Init
-  UINT cdev_flags = 0;
+	UINT cdev_flags = 0;
 #ifdef _DEBUG
-  cdev_flags |= D3D11_CREATE_DEVICE_DEBUG;
+	cdev_flags |= D3D11_CREATE_DEVICE_DEBUG;
 #endif
-  // スワップチェイン設定
-  DXGI_SWAP_CHAIN_DESC sd;
-  ZeroMemory(&sd, sizeof(sd));
-  sd.BufferCount = 1;
-  sd.BufferDesc.Width = rc.right;
-  sd.BufferDesc.Height = rc.bottom;
-  sd.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-  sd.BufferDesc.RefreshRate.Numerator = 1000;
-  sd.BufferDesc.RefreshRate.Denominator = 1;	//1/60 = 60fps
-  sd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
-  sd.OutputWindow = hWnd;
-  sd.SampleDesc.Count = 1;
-  sd.SampleDesc.Quality = 0;
-  sd.Windowed = true;
-  sd.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
+	// スワップチェイン設定
+	DXGI_SWAP_CHAIN_DESC sd;
+	ZeroMemory(&sd, sizeof(sd));
+	sd.BufferCount = 1;
+	sd.BufferDesc.Width = rc.right;
+	sd.BufferDesc.Height = rc.bottom;
+	sd.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+	sd.BufferDesc.RefreshRate.Numerator = 1000;
+	sd.BufferDesc.RefreshRate.Denominator = 1;	//1/60 = 60fps
+	sd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
+	sd.OutputWindow = hWnd;
+	sd.SampleDesc.Count = 1;
+	sd.SampleDesc.Quality = 0;
+	sd.Windowed = true;
+	sd.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
 
-  D3D_FEATURE_LEVEL featureLevels[] =
-  {
-    D3D_FEATURE_LEVEL_11_1,
-  };
+	D3D_FEATURE_LEVEL featureLevels[] =
+	{
+	  D3D_FEATURE_LEVEL_11_1,
+	};
 
-  // DirectX11デバイスとスワップチェイン作成
-  hr = D3D11CreateDeviceAndSwapChain(adapter, D3D_DRIVER_TYPE_UNKNOWN, NULL,
-    cdev_flags, featureLevels, 1, D3D11_SDK_VERSION, &sd,
-    &m_pSwapChain, &m_pDevice, NULL, &m_pImContext);
-  if (FAILED(hr))
-  {
-    return hr;
-  }
+	// DirectX11デバイスとスワップチェイン作成
+	hr = D3D11CreateDeviceAndSwapChain(adapter, D3D_DRIVER_TYPE_UNKNOWN, NULL,
+		cdev_flags, featureLevels, 1, D3D11_SDK_VERSION, &sd,
+		&m_pSwapChain, &m_pDevice, NULL, &m_pImContext);
+	if (FAILED(hr))
+	{
+		return hr;
+	}
 
-  //アダプタを解放
-  adapter->Release();
-  adapter = 0;
+	//アダプタを解放
+	adapter->Release();
+	adapter = 0;
 
-  //ファクトリを解放
-  factory->Release();
-  factory = 0;
+	//ファクトリを解放
+	factory->Release();
+	factory = 0;
 
-  //ステンシル用テクスチャーの設定（深層バッファ）
-  D3D11_TEXTURE2D_DESC hTexture2dDesc;
-  hTexture2dDesc.Width = sd.BufferDesc.Width;
-  hTexture2dDesc.Height = sd.BufferDesc.Height;
-  hTexture2dDesc.MipLevels = 1;
-  hTexture2dDesc.ArraySize = 1;
-  hTexture2dDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
-  hTexture2dDesc.SampleDesc = sd.SampleDesc;
-  hTexture2dDesc.Usage = D3D11_USAGE_DEFAULT;
-  hTexture2dDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
-  hTexture2dDesc.CPUAccessFlags = 0;
-  hTexture2dDesc.MiscFlags = 0;
-  //ステンシル用テクスチャの作成（深層バッファ）
-  hr = m_pDevice->CreateTexture2D(&hTexture2dDesc, NULL, &m_pTexture2DDepth);
-  if (FAILED(hr))
-  {
-    return hr;
-  }
+	//ステンシル用テクスチャーの設定（深層バッファ）
+	D3D11_TEXTURE2D_DESC hTexture2dDesc;
+	hTexture2dDesc.Width = sd.BufferDesc.Width;
+	hTexture2dDesc.Height = sd.BufferDesc.Height;
+	hTexture2dDesc.MipLevels = 1;
+	hTexture2dDesc.ArraySize = 1;
+	hTexture2dDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
+	hTexture2dDesc.SampleDesc = sd.SampleDesc;
+	hTexture2dDesc.Usage = D3D11_USAGE_DEFAULT;
+	hTexture2dDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
+	hTexture2dDesc.CPUAccessFlags = 0;
+	hTexture2dDesc.MiscFlags = 0;
+	//ステンシル用テクスチャの作成（深層バッファ）
+	hr = m_pDevice->CreateTexture2D(&hTexture2dDesc, NULL, &m_pTexture2DDepth);
+	if (FAILED(hr))
+	{
+		return hr;
+	}
 
-  D3D11_DEPTH_STENCIL_DESC depthStencilDesc;
-  //ステンシルステートの初期化（３Ｄ用）
-  ZeroMemory(&depthStencilDesc, sizeof(D3D11_DEPTH_STENCIL_DESC));
+	D3D11_DEPTH_STENCIL_DESC depthStencilDesc;
+	//ステンシルステートの初期化（３Ｄ用）
+	ZeroMemory(&depthStencilDesc, sizeof(D3D11_DEPTH_STENCIL_DESC));
 
-  //ステンシルステート設定
-  depthStencilDesc.DepthEnable = true;
-  depthStencilDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
-  depthStencilDesc.DepthFunc = D3D11_COMPARISON_LESS;
+	//ステンシルステート設定
+	depthStencilDesc.DepthEnable = true;
+	depthStencilDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
+	depthStencilDesc.DepthFunc = D3D11_COMPARISON_LESS;
 
-  depthStencilDesc.StencilEnable = true;
-  depthStencilDesc.StencilReadMask = 0xFF;
-  depthStencilDesc.StencilWriteMask = 0xFF;
+	depthStencilDesc.StencilEnable = true;
+	depthStencilDesc.StencilReadMask = 0xFF;
+	depthStencilDesc.StencilWriteMask = 0xFF;
 
-  depthStencilDesc.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
-  depthStencilDesc.FrontFace.StencilDepthFailOp = D3D11_STENCIL_OP_INCR;
-  depthStencilDesc.FrontFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
-  depthStencilDesc.FrontFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
+	depthStencilDesc.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
+	depthStencilDesc.FrontFace.StencilDepthFailOp = D3D11_STENCIL_OP_INCR;
+	depthStencilDesc.FrontFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
+	depthStencilDesc.FrontFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
 
-  depthStencilDesc.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
-  depthStencilDesc.BackFace.StencilDepthFailOp = D3D11_STENCIL_OP_DECR;
-  depthStencilDesc.BackFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
-  depthStencilDesc.BackFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
+	depthStencilDesc.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
+	depthStencilDesc.BackFace.StencilDepthFailOp = D3D11_STENCIL_OP_DECR;
+	depthStencilDesc.BackFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
+	depthStencilDesc.BackFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
 
-  //ステンシルステート作成
-  hr = m_pDevice->CreateDepthStencilState(&depthStencilDesc, &m_pDepthStencilState);
-  if (FAILED(hr))
-  {
-    return hr;
-  }
+	//ステンシルステート作成
+	hr = m_pDevice->CreateDepthStencilState(&depthStencilDesc, &m_pDepthStencilState);
+	if (FAILED(hr))
+	{
+		return hr;
+	}
 
-  //ステンシルターゲット作成
-  D3D11_DEPTH_STENCIL_VIEW_DESC hDepthStencilViewDesc;
-  hDepthStencilViewDesc.Format = hTexture2dDesc.Format;
-  hDepthStencilViewDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2DMS;
-  hDepthStencilViewDesc.Flags = 0;
-  hr = m_pDevice->CreateDepthStencilView(m_pTexture2DDepth.Get(), &hDepthStencilViewDesc, &m_pDepthStencilView);
-  if (FAILED(hr))
-  {
-    return hr;
-  }
+	//ステンシルターゲット作成
+	D3D11_DEPTH_STENCIL_VIEW_DESC hDepthStencilViewDesc;
+	hDepthStencilViewDesc.Format = hTexture2dDesc.Format;
+	hDepthStencilViewDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2DMS;
+	hDepthStencilViewDesc.Flags = 0;
+	hr = m_pDevice->CreateDepthStencilView(m_pTexture2DDepth.Get(), &hDepthStencilViewDesc, &m_pDepthStencilView);
+	if (FAILED(hr))
+	{
+		return hr;
+	}
 
-  // スワップチェインに用意されたバッファ（2Dテクスチャ）を取得
-  hr = m_pSwapChain->GetBuffer(0, IID_PPV_ARGS(&m_pRTTex));
-  if (FAILED(hr))
-  {
-    return hr;
-  }
+	// スワップチェインに用意されたバッファ（2Dテクスチャ）を取得
+	hr = m_pSwapChain->GetBuffer(0, IID_PPV_ARGS(&m_pRTTex));
+	if (FAILED(hr))
+	{
+		return hr;
+	}
 
-  // レンダーターゲットView作成
-  hr = m_pDevice->CreateRenderTargetView(m_pRTTex.Get(), NULL, &m_pRTView);
-  if (FAILED(hr))
-  {
-    return hr;
-  }
+	// レンダーターゲットView作成
+	hr = m_pDevice->CreateRenderTargetView(m_pRTTex.Get(), NULL, &m_pRTView);
+	if (FAILED(hr))
+	{
+		return hr;
+	}
 
-  // viewport
-  m_Viewport.Width = static_cast<FLOAT>(rc.right - rc.left);
-  m_Viewport.Height = static_cast<FLOAT>(rc.bottom - rc.top);
-  m_Viewport.MinDepth = 0.0f;
-  m_Viewport.MaxDepth = 1.0f;
-  m_Viewport.TopLeftX = 0;
-  m_Viewport.TopLeftY = 0;
+	// viewport
+	m_Viewport.Width = static_cast<FLOAT>(rc.right - rc.left);
+	m_Viewport.Height = static_cast<FLOAT>(rc.bottom - rc.top);
+	m_Viewport.MinDepth = 0.0f;
+	m_Viewport.MaxDepth = 1.0f;
+	m_Viewport.TopLeftX = 0;
+	m_Viewport.TopLeftY = 0;
 
-  //ラスタライザ設定
-  D3D11_RASTERIZER_DESC hRasterizerDesc = {
-    D3D11_FILL_SOLID,
-    D3D11_CULL_NONE,	//ポリゴンの裏表を無くす
-    FALSE,
-    0,
-    0.0f,
-    FALSE,
-    FALSE,
-    FALSE,
-    FALSE,
-    FALSE
-  };
-  hr = m_pDevice->CreateRasterizerState(&hRasterizerDesc, &m_pRasterizerState);
-  if (FAILED(hr))
-  {
-    return hr;
-  }
+	//ラスタライザ設定
+	D3D11_RASTERIZER_DESC hRasterizerDesc = {
+	  D3D11_FILL_SOLID,
+	  D3D11_CULL_NONE,	//ポリゴンの裏表を無くす
+	  FALSE,
+	  0,
+	  0.0f,
+	  FALSE,
+	  FALSE,
+	  FALSE,
+	  FALSE,
+	  FALSE
+	};
+	hr = m_pDevice->CreateRasterizerState(&hRasterizerDesc, &m_pRasterizerState);
+	if (FAILED(hr))
+	{
+		return hr;
+	}
 
-  // サンプラー作成
-  D3D11_SAMPLER_DESC sampDesc;
-  ZeroMemory(&sampDesc, sizeof(sampDesc));
-  sampDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
-  sampDesc.AddressU = D3D11_TEXTURE_ADDRESS_CLAMP;
-  sampDesc.AddressV = D3D11_TEXTURE_ADDRESS_CLAMP;
-  sampDesc.AddressW = D3D11_TEXTURE_ADDRESS_CLAMP;
-  sampDesc.ComparisonFunc = D3D11_COMPARISON_NEVER;
-  sampDesc.MinLOD = FLT_MIN;
-  sampDesc.MaxLOD = FLT_MAX;
-  hr = m_pDevice->CreateSamplerState(&sampDesc, &m_pSampler);
-  if (FAILED(hr))
-  {
-    return hr;
-  }
+	// サンプラー作成
+	D3D11_SAMPLER_DESC sampDesc;
+	ZeroMemory(&sampDesc, sizeof(sampDesc));
+	sampDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
+	sampDesc.AddressU = D3D11_TEXTURE_ADDRESS_CLAMP;
+	sampDesc.AddressV = D3D11_TEXTURE_ADDRESS_CLAMP;
+	sampDesc.AddressW = D3D11_TEXTURE_ADDRESS_CLAMP;
+	sampDesc.ComparisonFunc = D3D11_COMPARISON_NEVER;
+	sampDesc.MinLOD = FLT_MIN;
+	sampDesc.MaxLOD = FLT_MAX;
+	hr = m_pDevice->CreateSamplerState(&sampDesc, &m_pSampler);
+	if (FAILED(hr))
+	{
+		return hr;
+	}
 #pragma endregion
 
-  return hr;
+	return hr;
 }
 
 ID3D11VertexShader* DirectX11Manager::CreateVertexShader(const string & filename, const string & entrypath, bool erorr)
@@ -648,7 +648,7 @@ void DirectX11Manager::DrawBegin()
   m_pImContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
   // 指定色で画面クリア
-  float ClearColor[4] = { 0.0f, 0.0f, 0.0f, 1.0f }; //red,green,blue,alpha
+  float ClearColor[4] = { 0.0f, 0.0f, 0.5f, 1.0f }; //red,green,blue,alpha
   m_pImContext->ClearRenderTargetView(m_pRTView.Get(), ClearColor);
   float Cloar[4] = { 0,0,0,1 };
   m_pImContext->ClearDepthStencilView(m_pDepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
