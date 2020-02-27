@@ -26,7 +26,7 @@ struct VS_INPUT
 struct PS_INPUT
 {
   float4 Pos : SV_POSITION;
-  float4 Col : COLOR0;
+  float4 Col : COL;
   float2 Tex : TEXCOORD;
 };
 

@@ -70,7 +70,7 @@ int PlWindows::BlkTextureLoad(string filename, int blkW, int blkH, int blkNum)
 
 void PlWindows::DrawIndexed(int start, int FacesNum, vector<AlU32> lpIndex, vector<PolygonVertex> Vertex, int hTexture)
 {
-	SetDrawBlendMode(BLENDMODE_NOBLEND, 255);
+	SetDrawBlendMode(BLENDMODE_ALPHA, 255);
 	//コンスタントバッファの作成
 	struct ConstantBufferData
 	{

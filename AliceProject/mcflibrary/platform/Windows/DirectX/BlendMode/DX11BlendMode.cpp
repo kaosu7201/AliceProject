@@ -9,7 +9,7 @@ void BlendAlpha();
 void BlendPmaAlpha();
 void SetDrawBlendMode(int BlendMode, int pal)
 {
-  if (BlendMode != 0)
+  if (BlendMode == 0)
   {
     PlWindows::DXManager.m_pImContext->OMSetRenderTargets(
       1,                                    // ターゲット
@@ -86,7 +86,7 @@ static void BlendAlpha()
   BlendDesc.IndependentBlendEnable = FALSE;
   BlendDesc.RenderTarget[0].BlendEnable = TRUE;
   BlendDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
-  BlendDesc.RenderTarget[0].DestBlend = D3D11_BLEND_DEST_COLOR;
+  BlendDesc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
   BlendDesc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
   BlendDesc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
   BlendDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;

@@ -142,6 +142,7 @@ ID3D11ShaderResourceView* DXFont::CreateFontTexture(const char *c)
 
 void DXFont::DrawFont(const char *c, int x, int y, AlColor4 color)
 {
+	SetDrawBlendMode(BLENDMODE_ALPHA, 255 * color.a);
   auto texture = GetFontTexture(c);
   if (!texture) return;
 
@@ -149,7 +150,7 @@ void DXFont::DrawFont(const char *c, int x, int y, AlColor4 color)
   sp.setTexture(&FontTex[c], true);
   sp.setPos(x + fontX, y + fontY);
   sp.setRGB(color.r, color.g, color.b);
-  SetDrawBlendMode(BLENDMODE_ALPHA, 255 * color.a);
+  
   sp.draw(false);
   DXSprite::drawAll();
   DXSprite::clearDrawList();

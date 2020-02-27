@@ -37,7 +37,7 @@ bool ApplicationMain::Process()
 
 bool ApplicationMain::Render()
 {
-  DrawPrintf(200, 360, AlColor4{ 1,1,1,1 }, "abcdefg%f", 10.6754);
   gFbxModel["Player"]->Render();
+  DrawPrintf(400, 360, AlColor4{ 1,1,1,1 }, "abcdefg%f", 10.6754);
   return false;
 }

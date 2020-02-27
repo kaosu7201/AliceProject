@@ -650,7 +650,7 @@ void DirectX11Manager::DrawBegin()
   // 指定色で画面クリア
   float ClearColor[4] = { 0.0f, 0.0f, 0.5f, 1.0f }; //red,green,blue,alpha
   m_pImContext->ClearRenderTargetView(m_pRTView.Get(), ClearColor);
-  float Cloar[4] = { 0,0,0,1 };
+  float Cloar[4] = { 0,0,0.5,1 };
   m_pImContext->ClearDepthStencilView(m_pDepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
   m_pImContext->RSSetViewports(1, &m_Viewport);
